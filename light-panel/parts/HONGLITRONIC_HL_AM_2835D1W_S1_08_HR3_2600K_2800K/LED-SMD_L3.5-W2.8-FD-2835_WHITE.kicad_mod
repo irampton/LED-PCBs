@@ -1,0 +1,162 @@
+(footprint "HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K:LED-SMD_L3.5-W2.8-FD-2835_WHITE"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "d60534d9-49a0-465b-bacd-fe1ca245e4a4")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "e4fa1a94-b929-4135-8c0e-7c89a4c01686")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "LED-SMD_L3.5-W2.8-FD-2835_WHITE"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "452a4945-6cc3-4b5a-a48d-7277bbd47ae5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center 1.98 -1.4)
+		(end 2.01 -1.4)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "df2f780d-725c-49e2-a350-88a184b1e619")
+	)
+	(fp_line
+		(start -1.54 1.4)
+		(end 1.96 1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "07ccfaf7-5f6b-444d-a367-2bfabdf12b4c")
+	)
+	(fp_line
+		(start 1.96 -1.4)
+		(end -1.54 -1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "33df58c4-3b2c-4a8b-a473-4e9bc163235b")
+	)
+	(fp_line
+		(start 1.96 -1.4)
+		(end 1.96 -1.28)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "74e6fd0b-2a27-4813-978a-82a962283a4b")
+	)
+	(fp_line
+		(start 1.96 1.28)
+		(end 1.96 1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "de847f82-3fe0-4e11-964f-f863a7804258")
+	)
+	(fp_line
+		(start -1.54 -1.4)
+		(end -1.54 -1.28)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "f6d7fc7f-d58d-4d19-bd49-676d01a2d946")
+	)
+	(fp_line
+		(start -1.54 1.28)
+		(end -1.54 1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "5c62797d-e241-4d30-ac34-ca36306376ee")
+	)
+	(fp_line
+		(start 1.72 -1.4)
+		(end 1.84 -1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "a50b2761-ed3c-4278-beb9-3fcc53b054de")
+	)
+	(fp_line
+		(start 1.84 -1.4)
+		(end 1.96 -1.28)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "ce596dfb-8357-4024-93e1-837d93babd8e")
+	)
+	(pad "2" smd rect
+		(at -1.23 0 0)
+		(size 1.55 2.1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "fa9056f5-e96a-44db-8fd3-cb3825857b37")
+	)
+	(pad "1" smd rect
+		(at 1.23 0 0)
+		(size 2.3 2.1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "26d290cb-6cf9-48c6-9b58-a0b4dbbe5729")
+	)
+	(model "${KIPRJMOD}/../../parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K/LED-SMD_L3.5-W2.8-FD-2835_WHITE.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,24 @@
+"""light-panel - A new atopile project"""
+
+from "LEDs.ato" import CoolLed
+from "LEDs.ato" import WarmLed
+
+import ElectricPower
+
+
+module App:
+    power_21v = new ElectricPower
+    signal cool_pwm
+    signal warm_pwm
+
+    cool_led = new CoolLed
+    warm_led = new WarmLed
+
+    power_21v.voltage = 21V +/- 20%
+    power_21v.hv ~ cool_led.channel.power_in.hv
+    power_21v.lv ~ cool_led.channel.power_in.lv
+    power_21v.hv ~ warm_led.channel.power_in.hv
+    power_21v.lv ~ warm_led.channel.power_in.lv
+
+    cool_pwm ~ cool_led.channel.PWM
+    warm_pwm ~ warm_led.channel.PWM

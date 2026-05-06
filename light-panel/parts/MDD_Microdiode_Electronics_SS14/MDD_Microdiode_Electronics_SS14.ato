@@ -1,0 +1,21 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component MDD_Microdiode_Electronics_SS14_package:
+    """SS14"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2480", date="2026-05-06T17:30:44.030637+00:00", checksum="987cc97906e63475151d4003182d84f7de4a3e5e8ef821251b8870ee14389202">
+
+    trait is_atomic_part<manufacturer="MDD（Microdiode Electronics）", partnumber="SS14", footprint="SMA_L4.2-W2.6-LS5.0-RD_1.kicad_mod", symbol="SS14.kicad_sym", model="SMA_L4.2-W2.6-LS5.0-RD_1.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2480", manufacturer="MDD（Microdiode Electronics）", partno="SS14">
+    trait has_designator_prefix<prefix="D">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2407101109_MDD-Microdiode-Semiconductor-SS14_C2480.pdf">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

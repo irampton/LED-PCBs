@@ -1,0 +1,75 @@
+#pragma experiment("TRAITS")
+
+from "parts/Diodes_Incorporated_AL8861WT_7/Diodes_Incorporated_AL8861WT_7.ato" import Diodes_Incorporated_AL8861WT_7_package
+from "parts/Ever_Ohms_Tech_CR1206FR430P05R/Ever_Ohms_Tech_CR1206FR430P05R.ato" import Ever_Ohms_Tech_CR1206FR430P05R_package
+from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
+
+import Capacitor
+import ElectricPower
+import Inductor
+
+
+module AL8861:
+    power_in = new ElectricPower
+
+    driver = new Diodes_Incorporated_AL8861WT_7_package
+    sense = new Ever_Ohms_Tech_CR1206FR430P05R_package
+    input_cap = new Capacitor
+    inductor = new Inductor
+    freewheel_diode = new MDD_Microdiode_Electronics_SS14_package
+
+    driver.VIN ~ power_in.hv
+    driver.GND ~ power_in.lv
+    sense.A ~ power_in.hv
+    sense.B ~ driver.ISENSE
+
+    input_cap.capacitance = 10uF +/- 20%
+    input_cap.unnamed[0] ~ driver.VIN
+    input_cap.unnamed[1] ~ driver.GND
+
+    inductor.inductance = 47uH +/- 20%
+    freewheel_diode.A ~ power_in.lv
+    freewheel_diode.K ~ driver.LX
+    inductor.unnamed[1] ~ driver.LX
+
+
+module CoolLed:
+    # Cool-white AL8861 buck LED channel: two parallel strings of three LEDs
+    channel = new AL8861
+    led_1 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    led_2 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    led_3 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    led_4 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    led_5 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    led_6 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+
+    channel.driver.ISENSE ~ led_1.A
+    led_1.C ~ led_2.A
+    led_2.C ~ led_3.A
+    led_3.C ~ channel.inductor.unnamed[0]
+    channel.driver.ISENSE ~ led_4.A
+    led_4.C ~ led_5.A
+    led_5.C ~ led_6.A
+    led_6.C ~ channel.inductor.unnamed[0]
+
+
+module WarmLed:
+    # Warm-white AL8861 buck LED channel: two parallel strings of three LEDs
+    channel = new AL8861
+    led_1 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    led_2 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    led_3 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    led_4 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    led_5 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    led_6 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+
+    channel.driver.ISENSE ~ led_1.A
+    led_1.K ~ led_2.A
+    led_2.K ~ led_3.A
+    led_3.K ~ channel.inductor.unnamed[0]
+    channel.driver.ISENSE ~ led_4.A
+    led_4.K ~ led_5.A
+    led_5.K ~ led_6.A
+    led_6.K ~ channel.inductor.unnamed[0]

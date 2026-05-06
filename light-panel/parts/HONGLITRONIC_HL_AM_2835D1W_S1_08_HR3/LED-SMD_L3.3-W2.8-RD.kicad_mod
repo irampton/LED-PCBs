@@ -1,0 +1,114 @@
+(footprint "HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3:LED-SMD_L3.3-W2.8-RD"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "ea0a0cec-1340-4c43-9f2b-d34cce49ba3c")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "05017e83-50a7-4170-8c16-0c5e7d26ca7b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "LED-SMD_L3.3-W2.8-RD"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "c5e04be0-8a28-40f3-a966-07258e350c6f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -2 1.4)
+		(end -1.97 1.4)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "2641be6f-cd3a-4481-b1f4-92f336a4186f")
+	)
+	(fp_line
+		(start -1.91 -1.4)
+		(end -1.89 -1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "5251843a-4f66-4f38-9ad9-a9669b131d57")
+	)
+	(fp_line
+		(start -1.89 -1.4)
+		(end 1.39 -1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "88c6277b-6678-4f25-a6b5-d9885a8a49fb")
+	)
+	(fp_line
+		(start 1.39 1.4)
+		(end -1.91 1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "43805678-ff48-4f01-afea-c8f3ba458573")
+	)
+	(fp_line
+		(start -1.91 1.4)
+		(end -2.07 1.4)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "2b825249-36b0-4304-9bb6-8eaa40b65469")
+	)
+	(pad "2" smd rect
+		(at 1.09 0 180)
+		(size 1.1 2.38)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "13a6f0f2-e5fa-4c80-b7f9-2397db5a814d")
+	)
+	(pad "1" smd rect
+		(at -1.09 0 180)
+		(size 2.33 2.38)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "21575224-88c2-4f8a-9aea-c90db868351a")
+	)
+	(model "${KIPRJMOD}/../../parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3/LED-SMD_L3.5-W2.8-H0.7.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+	(embedded_fonts no)
+)

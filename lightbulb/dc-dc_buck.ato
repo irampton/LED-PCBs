@@ -11,7 +11,8 @@ import Resistor
 import Capacitor
 import Inductor
 
-module Stepdown3V3:
+
+module DCDC_Buck:
     power_in = new ElectricPower
     power_out = new ElectricPower
     vout_sw = new ElectricPower
@@ -59,10 +60,12 @@ module Stepdown3V3:
     vout_sw.hv ~ bead.A
     bead.B ~ power_out.hv
 
-    # Feedback/control
+    # Feedback/control: currently set for 3.3 V output.
     fb_cap.capacitance = 47pF +/- 5%
+    # 120 kohm high-side feedback resistor for the current 3.3 V setting.
     fb_r1.A ~ vout_sw.hv
     fb_r1.B ~ regulator.FB
+    # 39 kohm low-side feedback resistor for the current 3.3 V setting.
     fb_r2.A ~ regulator.FB
     fb_r2.B ~ vout_sw.lv
     fb_cap.unnamed[0] ~ vout_sw.hv

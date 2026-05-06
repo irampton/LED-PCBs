@@ -1,0 +1,22 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Diodes_Incorporated_AL8861WT_7_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C581338", date="2026-05-06T17:30:29.271139+00:00", checksum="146df1c536fac12a0167983081bf267e45d67ce8dd23dbf151cc97fc557d6e0b">
+
+    trait is_atomic_part<manufacturer="Diodes Incorporated", partnumber="AL8861WT-7", footprint="TSOT-25_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod", symbol="AL8861WT-7.kicad_sym", model="TSOT-25-5_L2.9-W1.6-H1.0-LS2.8-P0.95.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C581338", manufacturer="Diodes Incorporated", partno="AL8861WT-7">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2009051436_Diodes-Incorporated-AL8861WT-7_C581338.pdf">
+
+    # pins
+    signal GND ~ pin 2
+    signal ISENSE ~ pin 4
+    signal LX ~ pin 1
+    signal VIN ~ pin 5
+    signal VSET ~ pin 3

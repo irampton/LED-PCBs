@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C210324", date="2026-05-06T17:30:07.587454+00:00", checksum="a233b7471e9bc239a4a1e940f09de195bc5682f6c2c132c3dd233bd747fb5b9a">
+
+    trait is_atomic_part<manufacturer="HONGLITRONIC)", partnumber="HL-AM-2835D1W-S1-08-HR3", footprint="LED-SMD_L3.3-W2.8-RD.kicad_mod", symbol="HL-AM-2835D1W-S1-08-HR3_C210324.kicad_sym", model="LED-SMD_L3.5-W2.8-H0.7.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C210324", manufacturer="HONGLITRONIC)", partno="HL-AM-2835D1W-S1-08-HR3">
+    trait has_designator_prefix<prefix="LED">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2009091106_HONGLITRONIC-Hongli-Zhihui--HONGLITRONIC-HL-AM-2835D1W-S1-08-HR3_C210324.pdf">
+
+    # pins
+    signal A ~ pin 2
+    signal C ~ pin 1

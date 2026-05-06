@@ -1,0 +1,125 @@
+#pragma experiment("MODULE_TEMPLATING")
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("TRAITS")
+import can_bridge_by_name
+import has_part_removed
+
+from "parts/Diodes_Incorporated_AL8861WT_7/Diodes_Incorporated_AL8861WT_7.ato" import Diodes_Incorporated_AL8861WT_7_package
+from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
+from "parts/UNI_ROYAL_0603WAF200KT5E/UNI_ROYAL_0603WAF200KT5E.ato" import UNI_ROYAL_0603WAF200KT5E_package
+
+import Capacitor
+import ElectricPower
+import Inductor
+import Resistor
+
+
+interface BallastResistor:
+    signal input
+    signal output
+    resistor = new UNI_ROYAL_0603WAF200KT5E_package
+
+    trait can_bridge_by_name
+    trait has_part_removed
+
+    input ~ resistor.1
+    output ~ resistor.2
+
+
+interface CoolWhiteLed:
+    signal input
+    signal output
+    led = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+
+    trait can_bridge_by_name
+    trait has_part_removed
+
+    input ~ led.A
+    output ~ led.C
+
+
+module WarmWhiteLed:
+    signal input
+    signal output
+    led = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+
+    trait can_bridge_by_name
+    trait has_part_removed
+
+    input ~ led.A
+    output ~ led.K
+
+
+module AL8861:
+    power_in = new ElectricPower
+    signal PWM
+    signal LED_RETURN
+    led_current_per_string = 120mA +/- 5%
+    parallel_strings = 5
+
+    driver = new Diodes_Incorporated_AL8861WT_7_package
+    sense = new Resistor
+    input_cap = new Capacitor
+    inductor = new Inductor
+    freewheel_diode = new MDD_Microdiode_Electronics_SS14_package
+    pwm_series = new Resistor
+    vset_pulldown = new Resistor
+    vset_filter_cap = new Capacitor
+
+    driver.VIN ~ power_in.hv
+    driver.GND ~ power_in.lv
+    power_in.hv ~> sense ~> driver.ISENSE
+
+    # AL8861 nominal current sense threshold is 100 mV.
+    sense.resistance = 100mV / (led_current_per_string * parallel_strings)
+
+    input_cap.capacitance = 10uF +/- 20%
+    driver.VIN ~> input_cap ~> driver.GND
+
+    inductor.inductance = 68uH +/- 20%
+    inductor.max_current = 1.2A to 2.5A
+    freewheel_diode.A ~ power_in.lv
+    freewheel_diode.K ~ driver.LX
+    LED_RETURN ~> inductor ~> driver.LX
+
+    # PWM input attenuator/filter: PWM -> 6.8k -> VSET, VSET -> 22k/100nF -> GND.
+    pwm_series.resistance = 6.8kohm +/- 5%
+    pwm_series.package = "0402"
+    PWM ~> pwm_series ~> driver.VSET
+    vset_pulldown.resistance = 22kohm +/- 5%
+    vset_pulldown.package = "0402"
+    driver.VSET ~> vset_pulldown ~> power_in.lv
+    vset_filter_cap.capacitance = 100nF +/- 20%
+    driver.VSET ~> vset_filter_cap ~> power_in.lv
+
+
+module CoolLed:
+    # Cool-white AL8861 buck LED channel. This concrete module is wired as 3S5P.
+    channel = new AL8861
+    channel.parallel_strings = 5
+    leds = new CoolWhiteLed[15]
+    # Ballast: two C22977 2 ohm, 100 mW resistors in series per parallel string.
+    ballast = new BallastResistor[10]
+
+    channel.driver.ISENSE ~> leds[0] ~> leds[1] ~> leds[2] ~> ballast[0] ~> ballast[1] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[3] ~> leds[4] ~> leds[5] ~> ballast[2] ~> ballast[3] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[6] ~> leds[7] ~> leds[8] ~> ballast[4] ~> ballast[5] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[9] ~> leds[10] ~> leds[11] ~> ballast[6] ~> ballast[7] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[12] ~> leds[13] ~> leds[14] ~> ballast[8] ~> ballast[9] ~> channel.LED_RETURN
+
+
+module WarmLed:
+    # Warm-white AL8861 buck LED channel. This concrete module is wired as 3S5P.
+    channel = new AL8861
+    channel.parallel_strings = 5
+    leds = new WarmWhiteLed[15]
+    # Ballast: two C22977 2 ohm, 100 mW resistors in series per parallel string.
+    ballast = new BallastResistor[10]
+
+    channel.driver.ISENSE ~> leds[0] ~> leds[1] ~> leds[2] ~> ballast[0] ~> ballast[1] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[3] ~> leds[4] ~> leds[5] ~> ballast[2] ~> ballast[3] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[6] ~> leds[7] ~> leds[8] ~> ballast[4] ~> ballast[5] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[9] ~> leds[10] ~> leds[11] ~> ballast[6] ~> ballast[7] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~> leds[12] ~> leds[13] ~> leds[14] ~> ballast[8] ~> ballast[9] ~> channel.LED_RETURN

@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component SXN_SMMS0650_680M_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2894721", date="2026-05-06T18:00:47.557516+00:00", checksum="af3dd69f8108bedafdd51024f2d7593bc6156d0b4c0c24648311e3ad3d3ec3f6">
+
+    trait is_atomic_part<manufacturer="SXN", partnumber="SMMS0650-680M", footprint="IND-SMD_L7.1-W6.6_H5.0.kicad_mod", symbol="SMMS0650-680M.kicad_sym", model="IND-SMD_L7.1-W6.6-H5.0.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2894721", manufacturer="SXN", partno="SMMS0650-680M">
+    trait has_designator_prefix<prefix="L">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2109101130_SXN-Shun-Xiang-Nuo-Elec-SMMS0650-680M_C2894721.pdf">
+
+    # pins
+    pin 2
+    pin 1
