@@ -39,6 +39,7 @@ module AL8861:
     sense.resistance = 100mV / (led_current_per_string * parallel_strings)
 
     input_cap.capacitance = 10uF +/- 20%
+    assert input_cap.max_voltage within 49V to 64V
     driver.VIN ~> input_cap ~> driver.GND
 
     inductor.inductance = 68uH +/- 20%
@@ -56,6 +57,7 @@ module AL8861:
     vset_pulldown.package = "0402"
     driver.VSET ~> vset_pulldown ~> power_in.lv
     vset_filter_cap.capacitance = 100nF +/- 20%
+    assert vset_filter_cap.max_voltage within 49V to 64V
     driver.VSET ~> vset_filter_cap ~> power_in.lv
 
 

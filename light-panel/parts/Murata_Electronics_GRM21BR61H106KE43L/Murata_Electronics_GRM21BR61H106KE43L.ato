@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Murata_Electronics_GRM21BR61H106KE43L_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C440198", date="2026-05-06T22:50:27.576679+00:00", checksum="9701459345290da06d1db590f08f2885a277bd3c10988db35d8ec8f3bf34c772">
+
+    trait is_atomic_part<manufacturer="Murata Electronics", partnumber="GRM21BR61H106KE43L", footprint="C0805.kicad_mod", symbol="GRM21BR61H106KE43L.kicad_sym", model="C0805_L2.0-W1.3-H1.3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C440198", manufacturer="Murata Electronics", partno="GRM21BR61H106KE43L">
+    trait has_designator_prefix<prefix="C">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2411041759_Murata-Electronics-GRM21BR61H106KE43L_C440198.pdf">
+
+    # pins
+    pin 1
+    pin 2
