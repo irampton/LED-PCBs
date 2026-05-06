@@ -1,0 +1,167 @@
+#pragma experiment("TRAITS")
+
+"""Long Dual White LED Panel - A new atopile project"""
+
+from "parts/Espressif_Systems_ESP32_C3_WROOM_02_N4/Espressif_Systems_ESP32_C3_WROOM_02_N4.ato" import Espressif_Systems_ESP32_C3_WROOM_02_N4_package
+from "parts/LZTEC_IRM_10_12/LZTEC_IRM_10_12.ato" import LZTEC_IRM_10_12_package
+from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+from "parts/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A.ato" import Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
+from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
+from "parts/Hanbo_Electronic_MC_401L68_Z09/Hanbo_Electronic_MC_401L68_Z09.ato" import Hanbo_Electronic_MC_401L68_Z09_package
+from "parts/XUNPU_TS_1088_AR02016/XUNPU_TS_1088_AR02016.ato" import XUNPU_TS_1088_AR02016_package
+from "parts/Diodes_Incorporated_AL8861WT_7/Diodes_Incorporated_AL8861WT_7.ato" import Diodes_Incorporated_AL8861WT_7_package
+from "parts/Ever_Ohms_Tech_CR1206FR430P05R/Ever_Ohms_Tech_CR1206FR430P05R.ato" import Ever_Ohms_Tech_CR1206FR430P05R_package
+from "5V_stepdown.ato" import Stepdown3V3
+
+import ElectricPower
+import Resistor
+import Capacitor
+import Inductor
+
+
+module App:
+    # Main power sources and regulators
+    power_12v = new ElectricPower
+    esp32 = new Espressif_Systems_ESP32_C3_WROOM_02_N4_package
+    power_supply = new LZTEC_IRM_10_12_package
+    ac_input = new Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
+    stepdown_3v3 = new Stepdown3V3
+
+    # USB-C connector and VBUS blocking diode
+    usb = new Hanbo_Electronic_MC_401L68_Z09_package
+    usb_power_diode = new MDD_Microdiode_Electronics_SS14_package
+
+    # ESP32 local decoupling, USB series resistors, and boot controls
+    esp32_bulk_cap = new Capacitor
+    esp32_bypass_cap = new Capacitor
+    usb_dm_series = new Resistor
+    usb_dp_series = new Resistor
+    en_pullup = new Resistor
+    en_cap = new Capacitor
+    reset_button = new XUNPU_TS_1088_AR02016_package
+    boot_pullup = new Resistor
+    boot_button = new XUNPU_TS_1088_AR02016_package
+
+    # Cool-white LED driver: two parallel strings of three LEDs
+    cool_driver = new Diodes_Incorporated_AL8861WT_7_package
+    cool_sense = new Ever_Ohms_Tech_CR1206FR430P05R_package
+    cool_input_cap = new Capacitor
+    cool_inductor = new Inductor
+    cool_freewheel_diode = new MDD_Microdiode_Electronics_SS14_package
+    cool_led_1 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    cool_led_2 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    cool_led_3 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    cool_led_4 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    cool_led_5 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+    cool_led_6 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
+
+    # Warm-white LED driver: two parallel strings of three LEDs
+    warm_driver = new Diodes_Incorporated_AL8861WT_7_package
+    warm_sense = new Ever_Ohms_Tech_CR1206FR430P05R_package
+    warm_input_cap = new Capacitor
+    warm_inductor = new Inductor
+    warm_freewheel_diode = new MDD_Microdiode_Electronics_SS14_package
+    warm_led_1 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    warm_led_2 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    warm_led_3 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    warm_led_4 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    warm_led_5 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+    warm_led_6 = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
+
+    # AC input into the isolated 12 V power module
+    ac_input.1 ~ power_supply.ACN
+    ac_input.2 ~ power_supply.ACL
+
+    # 12 V rail and 3.3 V ESP32 supply
+    power_12v.voltage = 12V +/- 5%
+    power_supply.Vopos ~ power_12v.hv
+    power_supply.Voneg ~ power_12v.lv
+    power_12v.hv ~ stepdown_3v3.power_in.hv
+    power_12v.lv ~ stepdown_3v3.power_in.lv
+    stepdown_3v3.power_out.hv ~ esp32.P3V3
+    stepdown_3v3.power_out.lv ~ esp32.GND
+    stepdown_3v3.power_out.lv ~ esp32.EP
+
+    # USB power and full-speed USB data pair
+    usb.VBUS ~ usb_power_diode.A
+    usb_power_diode.K ~ power_12v.hv
+    usb.GND ~ power_12v.lv
+    usb.EH ~ power_12v.lv
+    usb_dm_series.resistance = 22ohm +/- 5%
+    usb_dm_series.package = "0402"
+    usb.DN1 ~> usb_dm_series ~> esp32.IO18
+    usb_dp_series.resistance = 22ohm +/- 5%
+    usb_dp_series.package = "0402"
+    usb.DP1 ~> usb_dp_series ~> esp32.IO19
+
+    # ESP32 3.3 V bypassing
+    esp32_bulk_cap.capacitance = 10uF +/- 20%
+    esp32_bulk_cap.unnamed[0] ~ esp32.P3V3
+    esp32_bulk_cap.unnamed[1] ~ esp32.GND
+    esp32_bypass_cap.capacitance = 0.1uF +/- 20%
+    esp32_bypass_cap.unnamed[0] ~ esp32.P3V3
+    esp32_bypass_cap.unnamed[1] ~ esp32.GND
+
+    # ESP32 enable/reset circuit
+    en_pullup.resistance = 10kohm +/- 5%
+    en_pullup.package = "0402"
+    en_pullup.unnamed[0] ~ esp32.P3V3
+    en_pullup.unnamed[1] ~ esp32.EN
+    en_cap.capacitance = 1uF +/- 20%
+    en_cap.unnamed[0] ~ esp32.EN
+    en_cap.unnamed[1] ~ esp32.GND
+    reset_button.A ~ esp32.EN
+    reset_button.B ~ esp32.GND
+
+    # ESP32 bootloader button circuit
+    boot_pullup.resistance = 10kohm +/- 5%
+    boot_pullup.package = "0402"
+    boot_pullup.unnamed[0] ~ esp32.P3V3
+    boot_pullup.unnamed[1] ~ esp32.IO9
+    boot_button.A ~ esp32.IO9
+    boot_button.B ~ esp32.GND
+
+    # Cool-white AL8861 buck LED channel
+    cool_driver.VIN ~ power_12v.hv
+    cool_driver.GND ~ power_12v.lv
+    cool_driver.VSET ~ esp32.IO4
+    cool_sense.A ~ power_12v.hv
+    cool_sense.B ~ cool_driver.ISENSE
+    cool_input_cap.capacitance = 10uF +/- 20%
+    cool_input_cap.unnamed[0] ~ cool_driver.VIN
+    cool_input_cap.unnamed[1] ~ cool_driver.GND
+    cool_inductor.inductance = 47uH +/- 20%
+    cool_freewheel_diode.A ~ power_12v.lv
+    cool_freewheel_diode.K ~ cool_driver.LX
+    cool_driver.ISENSE ~ cool_led_1.A
+    cool_led_1.C ~ cool_led_2.A
+    cool_led_2.C ~ cool_led_3.A
+    cool_led_3.C ~ cool_inductor.unnamed[0]
+    cool_driver.ISENSE ~ cool_led_4.A
+    cool_led_4.C ~ cool_led_5.A
+    cool_led_5.C ~ cool_led_6.A
+    cool_led_6.C ~ cool_inductor.unnamed[0]
+    cool_inductor.unnamed[1] ~ cool_driver.LX
+
+    # Warm-white AL8861 buck LED channel
+    warm_driver.VIN ~ power_12v.hv
+    warm_driver.GND ~ power_12v.lv
+    warm_driver.VSET ~ esp32.IO5
+    warm_sense.A ~ power_12v.hv
+    warm_sense.B ~ warm_driver.ISENSE
+    warm_input_cap.capacitance = 10uF +/- 20%
+    warm_input_cap.unnamed[0] ~ warm_driver.VIN
+    warm_input_cap.unnamed[1] ~ warm_driver.GND
+    warm_inductor.inductance = 47uH +/- 20%
+    warm_freewheel_diode.A ~ power_12v.lv
+    warm_freewheel_diode.K ~ warm_driver.LX
+    warm_driver.ISENSE ~ warm_led_1.A
+    warm_led_1.K ~ warm_led_2.A
+    warm_led_2.K ~ warm_led_3.A
+    warm_led_3.K ~ warm_inductor.unnamed[0]
+    warm_driver.ISENSE ~ warm_led_4.A
+    warm_led_4.K ~ warm_led_5.A
+    warm_led_5.K ~ warm_led_6.A
+    warm_led_6.K ~ warm_inductor.unnamed[0]
+    warm_inductor.unnamed[1] ~ warm_driver.LX

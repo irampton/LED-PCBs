@@ -1,0 +1,20 @@
+# Build outputs
+build/
+manufacturing/
+
+# KiCad
+fp*cache
+
+# Dependencies
+.ato/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Do I need to commit this?
+.venv*/
+.tools/

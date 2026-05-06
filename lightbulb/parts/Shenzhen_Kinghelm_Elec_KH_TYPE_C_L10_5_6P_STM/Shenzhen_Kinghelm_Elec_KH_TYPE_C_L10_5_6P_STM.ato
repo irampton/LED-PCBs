@@ -1,0 +1,26 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Shenzhen_Kinghelm_Elec_KH_TYPE_C_L10_5_6P_STM_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2919659", date="2026-05-04T16:14:32.003370+00:00", checksum="4fdccaad60f900d7c3d95150904dc9d848b87677d32cf0b6329ffc05023b8e86">
+
+    trait is_atomic_part<manufacturer="Shenzhen Kinghelm Elec", partnumber="KH-TYPE-C-L10.5-6P-STM", footprint="USB-C-TH_KH-TYPE-C-L10.5-6P-STM.kicad_mod", symbol="KH-TYPE-C-L10.5-6P-STM.kicad_sym", model="2762a2a52ebd045.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2919659", manufacturer="Shenzhen Kinghelm Elec", partno="KH-TYPE-C-L10.5-6P-STM">
+    trait has_designator_prefix<prefix="USB">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2111151930_Shenzhen-Kinghelm-Elec-KH-TYPE-C-L10-5-6P-STM_C2919659.pdf">
+
+    # pins
+    signal CC1 ~ pin A5
+    signal CC2 ~ pin B5
+    signal EH ~ pin 1
+    EH ~ pin 3
+    EH ~ pin 2
+    signal GND ~ pin B12
+    GND ~ pin A12
+    signal VBUS ~ pin B9
+    VBUS ~ pin A9

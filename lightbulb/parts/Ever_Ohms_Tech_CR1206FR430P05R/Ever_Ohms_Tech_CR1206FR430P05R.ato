@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Ever_Ohms_Tech_CR1206FR430P05R_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C175800", date="2026-05-04T19:28:02.828166+00:00", checksum="b838503b9f3940203ffd1f69dc0a873e438293ae918eb4390f8cd8af870bd5b7">
+
+    trait is_atomic_part<manufacturer="Ever Ohms Tech", partnumber="CR1206FR430P05R", footprint="R1206.kicad_mod", symbol="CR1206F0R43P05.kicad_sym", model="R1206_L3.2-W1.6-H0.6.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C175800", manufacturer="Ever Ohms Tech", partno="CR1206FR430P05R">
+    trait has_designator_prefix<prefix="R">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Ever-Ohms-Tech-CR1206FR430P05R_C175800.pdf">
+
+    # pins
+    signal A ~ pin 1
+    signal B ~ pin 2

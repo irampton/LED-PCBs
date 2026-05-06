@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Murata_Electronics_BLM21SP601SH1D_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2661836", date="2026-05-04T18:38:49.069057+00:00", checksum="675a0d9a08e7669a9d604d50e99ad3d67297f507e4167f62c006f4b0dd70547a">
+
+    trait is_atomic_part<manufacturer="Murata Electronics", partnumber="BLM21SP601SH1D", footprint="L0805.kicad_mod", symbol="BLM21SP601SH1D.kicad_sym", model="R0805_L2.0-W1.3-H0.6.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2661836", manufacturer="Murata Electronics", partno="BLM21SP601SH1D">
+    trait has_designator_prefix<prefix="L">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2308111548_Murata-Electronics-BLM21SP601SH1D_C2661836.pdf">
+
+    # pins
+    pin 2
+    pin 1

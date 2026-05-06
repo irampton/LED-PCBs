@@ -1,0 +1,200 @@
+(footprint "Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A:CONN-TH_2P-P5.00_CPC3703CTR"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "7f6b0af6-ca7e-4091-b6a5-cdf2acafdafe")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "724ecd12-dd2f-45bf-ab04-ceda64b0281e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CONN-TH_2P-P5.00_CPC3703CTR"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "520de378-49a6-49b3-977c-5d0f07e467e5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -5 3.9)
+		(end -4.97 3.9)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "44aaace1-a3ef-4be7-8f89-99d8a8bf68d9")
+	)
+	(fp_circle
+		(center -2.5 0)
+		(end -2.25 0)
+		(stroke
+			(width 0.5)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "cecf28a4-627f-473a-bad7-23b8f39d4a96")
+	)
+	(fp_circle
+		(center 2.5 0)
+		(end 2.75 0)
+		(stroke
+			(width 0.5)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "df47aaa0-fc75-44a4-837e-b55039f68dd0")
+	)
+	(fp_line
+		(start -5.5 -2.85)
+		(end -5 -2.97)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "2203fc39-b389-42db-a215-6a5546ed9e3d")
+	)
+	(fp_line
+		(start -5.5 -3.35)
+		(end -5 -3.23)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "a449c14a-2a57-4b86-82cb-61f04ab6f2a7")
+	)
+	(fp_line
+		(start -5.5 2.55)
+		(end -5 2.67)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "a064cc1b-3dcc-47f4-b9ad-011e2a7270d2")
+	)
+	(fp_line
+		(start -5.5 3.05)
+		(end -5 2.93)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "03c31473-2667-4237-b0ee-c68feb9ae2ad")
+	)
+	(fp_line
+		(start -5.5 2.55)
+		(end -5.5 3.05)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "6117ba1f-af4f-4891-adcc-436457ddf9c7")
+	)
+	(fp_line
+		(start -5.5 -3.35)
+		(end -5.5 -2.85)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "f1090d57-2335-4ae2-b438-02b1b9f59462")
+	)
+	(fp_line
+		(start 5 -4.2)
+		(end 5 3.9)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "2b1686b1-21c1-4ca0-8346-7a49134ca5ef")
+	)
+	(fp_line
+		(start -5 -4.2)
+		(end 5 -4.2)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "c83c7b7a-3316-494a-b0be-1ed7787f96c3")
+	)
+	(fp_line
+		(start -5 3.9)
+		(end -5 -4.2)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "56d4a582-c5a5-43f8-8978-d0f176d82f20")
+	)
+	(fp_line
+		(start 5 3.9)
+		(end -5 3.9)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "33d39333-0e22-47ce-8ac1-9c87bcb66940")
+	)
+	(pad "1" thru_hole circle
+		(at -2.5 0 0)
+		(size 2 2)
+		(drill 1.1999976)
+		(layers "*.Cu" "*.Mask")
+		(uuid "b3d8fa7b-5aa2-4fec-bf49-f690d1267e84")
+	)
+	(pad "2" thru_hole circle
+		(at 2.5 0 0)
+		(size 2 2)
+		(drill 1.1999976)
+		(layers "*.Cu" "*.Mask")
+		(uuid "5c571b10-b933-4de9-874e-ca2ba87168cf")
+	)
+	(model "${KIPRJMOD}/../../parts/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A/CONN-TH_3P-P5.00_XD127V-5.0-3P-V.STEP"
+		(offset
+			(xyz -0.3 0.14 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

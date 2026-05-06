@@ -1,0 +1,126 @@
+(footprint "LZTEC_IRM_10_12:PWRM-TH_IRM-10-12"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "a02fdacb-1e28-466a-a7ef-a00bea6077a1")
+	(property "Reference" "REF**"
+		(at 0 -9.38)
+		(layer "F.SilkS")
+		(uuid "87987179-e61d-4566-9d0d-a6de5dcb5519")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "PWRM-TH_IRM-10-12"
+		(at 0 9.38)
+		(layer "F.Fab")
+		(uuid "4cde677a-64bc-4950-bbcd-5a2a659943ab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -22.85 -16.57)
+		(end -22.82 -16.57)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "84e43ff5-08b1-45df-93f8-53584d5c883e")
+	)
+	(fp_line
+		(start -22.85 8.82)
+		(end -22.85 -16.58)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "41ef51f1-f8b0-4457-9c9d-b468833d1588")
+	)
+	(fp_line
+		(start -22.85 -16.58)
+		(end 22.85 -16.58)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "8b03292c-1ac5-4087-a291-0219b8d3d8b2")
+	)
+	(fp_line
+		(start 22.85 8.82)
+		(end 22.85 -16.58)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "02e2cc26-27b9-4343-97db-17b9f39f1c37")
+	)
+	(fp_line
+		(start -22.85 8.82)
+		(end 22.85 8.82)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "1f3e4b4d-f91d-4da3-a0e1-4f9d900a100c")
+	)
+	(pad "1" thru_hole rect
+		(at -19.25 -5.38 0)
+		(size 2.3 2.3)
+		(drill 1.5000224)
+		(layers "*.Cu" "*.Mask")
+		(uuid "352fc241-789a-4d52-b6b6-86104cd4eb5c")
+	)
+	(pad "2" thru_hole circle
+		(at -19.25 5.38 0)
+		(size 2.3 2.3)
+		(drill 1.5000224)
+		(layers "*.Cu" "*.Mask")
+		(uuid "c819b0ab-3efa-4152-9aa0-c37e0352e783")
+	)
+	(pad "3" thru_hole circle
+		(at 19.25 5.38 0)
+		(size 2.3 2.3)
+		(drill 1.5000224)
+		(layers "*.Cu" "*.Mask")
+		(uuid "8bc641d8-d554-4888-bee6-b5e07e3768c9")
+	)
+	(pad "4" thru_hole circle
+		(at 19.25 -2.62 0)
+		(size 2.3 2.3)
+		(drill 1.5000224)
+		(layers "*.Cu" "*.Mask")
+		(uuid "6217435c-7d97-4db5-9050-7b629bd045ff")
+	)
+	(model "${KIPRJMOD}/../../parts/LZTEC_IRM_10_12/PWRM-TH_IRM-10-12.STEP"
+		(offset
+			(xyz 0 3.88 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

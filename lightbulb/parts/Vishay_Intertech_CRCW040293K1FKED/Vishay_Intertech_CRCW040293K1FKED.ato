@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Vishay_Intertech_CRCW040293K1FKED_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2085865", date="2026-05-04T18:40:27.942700+00:00", checksum="cf2747a91ecbfb82cd1cd496336fab8b7bf7e4accb67ab5437561478130af549">
+
+    trait is_atomic_part<manufacturer="Vishay Intertech", partnumber="CRCW040293K1FKED", footprint="R0402.kicad_mod", symbol="CRCW040293K1FKED.kicad_sym", model="R0402_L1.0-W0.5-H0.4.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2085865", manufacturer="Vishay Intertech", partno="CRCW040293K1FKED">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Vishay-Intertech-CRCW040293K1FKED_C2085865.pdf">
+
+    # pins
+    pin 2
+    pin 1

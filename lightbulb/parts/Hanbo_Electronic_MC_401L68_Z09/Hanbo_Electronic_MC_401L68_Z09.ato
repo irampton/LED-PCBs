@@ -1,0 +1,27 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Hanbo_Electronic_MC_401L68_Z09_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C47326491", date="2026-05-04T19:08:57.032104+00:00", checksum="e1a42ae48375e36dfc029cb5592a91af6d821cf72a72d5a7c43e8e6777086c31">
+
+    trait is_atomic_part<manufacturer="Hanbo Electronic", partnumber="MC-401L68-Z09", footprint="USB-C-SMD_MC-401L68-Z09.kicad_mod", symbol="MC-401L68-Z09.kicad_sym", model="USB-C-SMD_MC-401L68-Z09.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C47326491", manufacturer="Hanbo Electronic", partno="MC-401L68-Z09">
+    trait has_designator_prefix<prefix="USB">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2504101957_Hanbo-Electronic-MC-401L68-Z09_C47326491.pdf">
+
+    # pins
+    signal CC1 ~ pin A5
+    signal CC2 ~ pin B5
+    signal DN1 ~ pin A7
+    signal DP1 ~ pin A6
+    signal EH ~ pin 9
+    EH ~ pin 10
+    signal GND ~ pin B1
+    GND ~ pin B12
+    signal VBUS ~ pin B4
+    VBUS ~ pin B9

@@ -1,0 +1,23 @@
+#pragma experiment("TRAITS")
+
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component LZTEC_IRM_10_12_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C20618065", date="2026-05-04T02:20:13.551982+00:00", checksum="d114baf9c7e08dc98934884ee8a6fd6cd0e506827468df9a9f253d2fc67bc2b4">
+
+    trait is_atomic_part<manufacturer="LZTEC", partnumber="IRM-10-12", footprint="PWRM-TH_IRM-10-12.kicad_mod", symbol="IRM-10-12.kicad_sym", model="PWRM-TH_IRM-10-12.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C20618065", manufacturer="LZTEC", partno="IRM-10-12">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401311707_LZTEC-IRM-10-12_C20618065.pdf">
+
+    # pins
+    signal ACL ~ pin 2
+    signal ACN ~ pin 1
+    signal Voneg ~ pin 3
+    signal Vopos ~ pin 4

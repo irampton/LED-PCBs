@@ -1,0 +1,138 @@
+(footprint "cjiang_FXL0630_470_M:IND-SMD_L7.0-W6.6_FXL0630"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "cb6c4b2f-bd20-41b2-a6f3-e84a79b0a96d")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "964fc7e4-a2f0-4b33-a01a-a7f8c9c88baf")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L7.0-W6.6_FXL0630"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "8d0762ca-aa91-43d2-91ad-da57f0559bb2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center 3.5 -3.3)
+		(end 3.53 -3.3)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "54941005-a1de-4bf0-a1c6-62061fa203be")
+	)
+	(fp_line
+		(start -3.58 -1.96)
+		(end -3.58 -3.38)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "9168cfc7-6fe5-4a71-aac2-e4bc16f8f358")
+	)
+	(fp_line
+		(start -3.58 -3.38)
+		(end 3.58 -3.38)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "4ca97b95-fb6b-4ffc-908d-c565abbd01ae")
+	)
+	(fp_line
+		(start 3.58 -3.38)
+		(end 3.58 -1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "a4d36429-b73d-4863-8b42-51112c246bc8")
+	)
+	(fp_line
+		(start -3.58 1.96)
+		(end -3.58 3.38)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "b17a1c47-5498-436a-ad35-a7bf68d1cac8")
+	)
+	(fp_line
+		(start -3.58 3.38)
+		(end 3.58 3.38)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "916aecf1-b3a8-439a-bb71-cc55aaee2186")
+	)
+	(fp_line
+		(start 3.58 3.38)
+		(end 3.58 1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "7a3c6491-e326-4b0b-98a6-902c0fccb995")
+	)
+	(pad "1" smd rect
+		(at 3.13 0 0)
+		(size 2.42 3.62)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "9aab1fc0-965b-40a8-a06f-a6423bb7cfc5")
+	)
+	(pad "2" smd rect
+		(at -3.13 0 0)
+		(size 2.42 3.62)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "6fb85282-6b25-4114-9052-e9e9c729baff")
+	)
+	(model "${KIPRJMOD}/../../parts/cjiang_FXL0630_470_M/IND-SMD_L7.0-W6.6-H2.8_FXL0630.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

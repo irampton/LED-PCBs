@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component FOJAN_FRL0805JR430TS_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2930326", date="2026-05-04T19:26:44.889283+00:00", checksum="70959be7cb0ad5d0af1234cc3611acaabe8ce4a798fe33b8667198560da311fe">
+
+    trait is_atomic_part<manufacturer="FOJAN", partnumber="FRL0805JR430TS", footprint="R0805.kicad_mod", symbol="FRL0805JR430TS.kicad_sym", model="R0805_L2.0-W1.3-H0.6.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2930326", manufacturer="FOJAN", partno="FRL0805JR430TS">
+    trait has_designator_prefix<prefix="R">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2308241947_FOJAN-FRL0805JR430TS_C2930326.pdf">
+
+    # pins
+    pin 2
+    pin 1
