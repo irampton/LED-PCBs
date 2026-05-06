@@ -1,0 +1,23 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component HanElectricity_2541WV_06P_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C5383115", date="2026-05-06T20:56:11.566606+00:00", checksum="a323932374891000f03dc318c918d956564bc75bffee69c7f652ccc0010d8f85">
+
+    trait is_atomic_part<manufacturer="HanElectricity", partnumber="2541WV-06P", footprint="HDR-TH_6P-P2.54-V-M.kicad_mod", symbol="2541WV-06P.kicad_sym", model="HDR-TH_6P-P2.54-M-LI-1X6P.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C5383115", manufacturer="HanElectricity", partno="2541WV-06P">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2303301000_HanElectricity-2541WV-06P_C5383115.pdf">
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
+    pin 4
+    pin 5
+    pin 6

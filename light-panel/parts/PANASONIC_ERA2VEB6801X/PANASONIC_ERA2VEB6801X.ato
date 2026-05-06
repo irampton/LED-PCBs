@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component PANASONIC_ERA2VEB6801X_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C543679", date="2026-05-06T19:49:37.944835+00:00", checksum="6b895a4ac5ff2f766c5e77db7d6d3f0e7b55ec98a66ed879613f04ff2da75a4d">
+
+    trait is_atomic_part<manufacturer="PANASONIC", partnumber="ERA2VEB6801X", footprint="R0402.kicad_mod", symbol="ERA2VEB6801X.kicad_sym", model="R0402_L1.0-W0.5-H0.4.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C543679", manufacturer="PANASONIC", partno="ERA2VEB6801X">
+    trait has_designator_prefix<prefix="R">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2410121725_PANASONIC-ERA2VEB6801X_C543679.pdf">
+
+    # pins
+    pin 2
+    pin 1

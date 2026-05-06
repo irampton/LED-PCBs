@@ -2,7 +2,6 @@
 #pragma experiment("BRIDGE_CONNECT")
 #pragma experiment("TRAITS")
 import can_bridge_by_name
-import has_part_removed
 
 from "parts/Diodes_Incorporated_AL8861WT_7/Diodes_Incorporated_AL8861WT_7.ato" import Diodes_Incorporated_AL8861WT_7_package
 from "parts/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3/HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3.ato" import HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
@@ -14,42 +13,6 @@ import Capacitor
 import ElectricPower
 import Inductor
 import Resistor
-
-
-interface BallastResistor:
-    signal input
-    signal output
-    resistor = new UNI_ROYAL_0603WAF200KT5E_package
-
-    trait can_bridge_by_name
-    trait has_part_removed
-
-    input ~ resistor.1
-    output ~ resistor.2
-
-
-interface CoolWhiteLed:
-    signal input
-    signal output
-    led = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package
-
-    trait can_bridge_by_name
-    trait has_part_removed
-
-    input ~ led.A
-    output ~ led.C
-
-
-module WarmWhiteLed:
-    signal input
-    signal output
-    led = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package
-
-    trait can_bridge_by_name
-    trait has_part_removed
-
-    input ~ led.A
-    output ~ led.K
 
 
 module AL8861:
@@ -86,7 +49,8 @@ module AL8861:
 
     # PWM input attenuator/filter: PWM -> 6.8k -> VSET, VSET -> 22k/100nF -> GND.
     pwm_series.resistance = 6.8kohm +/- 5%
-    pwm_series.package = "0402"
+    pwm_series.max_voltage = 75V +/- 10%
+    pwm_series.package = "0603"
     PWM ~> pwm_series ~> driver.VSET
     vset_pulldown.resistance = 22kohm +/- 5%
     vset_pulldown.package = "0402"
@@ -99,27 +63,85 @@ module CoolLed:
     # Cool-white AL8861 buck LED channel. This concrete module is wired as 3S5P.
     channel = new AL8861
     channel.parallel_strings = 5
-    leds = new CoolWhiteLed[15]
+    leds = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_package[15]
     # Ballast: two C22977 2 ohm, 100 mW resistors in series per parallel string.
-    ballast = new BallastResistor[10]
+    ballast = new UNI_ROYAL_0603WAF200KT5E_package[10]
 
-    channel.driver.ISENSE ~> leds[0] ~> leds[1] ~> leds[2] ~> ballast[0] ~> ballast[1] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[3] ~> leds[4] ~> leds[5] ~> ballast[2] ~> ballast[3] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[6] ~> leds[7] ~> leds[8] ~> ballast[4] ~> ballast[5] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[9] ~> leds[10] ~> leds[11] ~> ballast[6] ~> ballast[7] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[12] ~> leds[13] ~> leds[14] ~> ballast[8] ~> ballast[9] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~ leds[0].A
+    leds[0].C ~ leds[1].A
+    leds[1].C ~ leds[2].A
+    leds[2].C ~ ballast[0].1
+    ballast[0].2 ~ ballast[1].1
+    ballast[1].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[3].A
+    leds[3].C ~ leds[4].A
+    leds[4].C ~ leds[5].A
+    leds[5].C ~ ballast[2].1
+    ballast[2].2 ~ ballast[3].1
+    ballast[3].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[6].A
+    leds[6].C ~ leds[7].A
+    leds[7].C ~ leds[8].A
+    leds[8].C ~ ballast[4].1
+    ballast[4].2 ~ ballast[5].1
+    ballast[5].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[9].A
+    leds[9].C ~ leds[10].A
+    leds[10].C ~ leds[11].A
+    leds[11].C ~ ballast[6].1
+    ballast[6].2 ~ ballast[7].1
+    ballast[7].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[12].A
+    leds[12].C ~ leds[13].A
+    leds[13].C ~ leds[14].A
+    leds[14].C ~ ballast[8].1
+    ballast[8].2 ~ ballast[9].1
+    ballast[9].2 ~ channel.LED_RETURN
 
 
 module WarmLed:
     # Warm-white AL8861 buck LED channel. This concrete module is wired as 3S5P.
     channel = new AL8861
     channel.parallel_strings = 5
-    leds = new WarmWhiteLed[15]
+    leds = new HONGLITRONIC_HL_AM_2835D1W_S1_08_HR3_2600K_2800K_package[15]
     # Ballast: two C22977 2 ohm, 100 mW resistors in series per parallel string.
-    ballast = new BallastResistor[10]
+    ballast = new UNI_ROYAL_0603WAF200KT5E_package[10]
 
-    channel.driver.ISENSE ~> leds[0] ~> leds[1] ~> leds[2] ~> ballast[0] ~> ballast[1] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[3] ~> leds[4] ~> leds[5] ~> ballast[2] ~> ballast[3] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[6] ~> leds[7] ~> leds[8] ~> ballast[4] ~> ballast[5] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[9] ~> leds[10] ~> leds[11] ~> ballast[6] ~> ballast[7] ~> channel.LED_RETURN
-    channel.driver.ISENSE ~> leds[12] ~> leds[13] ~> leds[14] ~> ballast[8] ~> ballast[9] ~> channel.LED_RETURN
+    channel.driver.ISENSE ~ leds[0].A
+    leds[0].K ~ leds[1].A
+    leds[1].K ~ leds[2].A
+    leds[2].K ~ ballast[0].1
+    ballast[0].2 ~ ballast[1].1
+    ballast[1].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[3].A
+    leds[3].K ~ leds[4].A
+    leds[4].K ~ leds[5].A
+    leds[5].K ~ ballast[2].1
+    ballast[2].2 ~ ballast[3].1
+    ballast[3].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[6].A
+    leds[6].K ~ leds[7].A
+    leds[7].K ~ leds[8].A
+    leds[8].K ~ ballast[4].1
+    ballast[4].2 ~ ballast[5].1
+    ballast[5].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[9].A
+    leds[9].K ~ leds[10].A
+    leds[10].K ~ leds[11].A
+    leds[11].K ~ ballast[6].1
+    ballast[6].2 ~ ballast[7].1
+    ballast[7].2 ~ channel.LED_RETURN
+
+    channel.driver.ISENSE ~ leds[12].A
+    leds[12].K ~ leds[13].A
+    leds[13].K ~ leds[14].A
+    leds[14].K ~ ballast[8].1
+    ballast[8].2 ~ ballast[9].1
+    ballast[9].2 ~ channel.LED_RETURN

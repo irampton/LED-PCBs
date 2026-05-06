@@ -3,22 +3,50 @@
 from "LEDs.ato" import CoolLed
 from "LEDs.ato" import WarmLed
 
+from "parts/HanElectricity_2541WV_06P/HanElectricity_2541WV_06P.ato" import HanElectricity_2541WV_06P_package
+
 import ElectricPower
+import ElectricLogic
 
 
 module App:
-    power_21v = new ElectricPower
-    signal cool_pwm
-    signal warm_pwm
+    signal v
+    signal gnd
+    signal pwm_cool
+    signal pwm_warm
+
+    power = new ElectricPower
+
+    power.voltage = 20V +/- 25%
+    v ~ power.hv
+    gnd ~ power.lv
+    v.override_net_name = "V+"
+    gnd.override_net_name = "GND"
+
+    input = new HanElectricity_2541WV_06P_package
+    output = new HanElectricity_2541WV_06P_package
+
+    input.1 ~ power.hv
+    input.2 ~ power.hv
+    input.3 ~ pwm_cool
+    input.4 ~ pwm_warm
+    input.5 ~ power.lv
+    input.6 ~ power.lv
+
+    output.1 ~ power.hv
+    output.2 ~ power.hv
+    output.3 ~ pwm_cool
+    output.4 ~ pwm_warm
+    output.5 ~ power.lv
+    output.6 ~ power.lv
 
     cool_led = new CoolLed
     warm_led = new WarmLed
 
-    power_21v.voltage = 21V +/- 20%
-    power_21v.hv ~ cool_led.channel.power_in.hv
-    power_21v.lv ~ cool_led.channel.power_in.lv
-    power_21v.hv ~ warm_led.channel.power_in.hv
-    power_21v.lv ~ warm_led.channel.power_in.lv
+    power.hv ~ cool_led.channel.power_in.hv
+    power.lv ~ cool_led.channel.power_in.lv
+    power.hv ~ warm_led.channel.power_in.hv
+    power.lv ~ warm_led.channel.power_in.lv
 
-    cool_pwm ~ cool_led.channel.PWM
-    warm_pwm ~ warm_led.channel.PWM
+    pwm_cool ~ cool_led.channel.PWM
+    pwm_warm ~ warm_led.channel.PWM
