@@ -119,4 +119,11 @@
 		(options "")
 		(descr "atopile: part lib: Murata_Electronics_GRM21BR61H106KE43L")
 	)
+	(lib
+		(name "BOURNS_SRN8040TA_680M")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../parts/BOURNS_SRN8040TA_680M")
+		(options "")
+		(descr "atopile: part lib: BOURNS_SRN8040TA_680M")
+	)
 )
