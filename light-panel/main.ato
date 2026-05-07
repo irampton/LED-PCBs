@@ -3,7 +3,7 @@
 from "LEDs.ato" import CoolLed
 from "LEDs.ato" import WarmLed
 
-from "parts/HanElectricity_2541WV_06P/HanElectricity_2541WV_06P.ato" import HanElectricity_2541WV_06P_package
+from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
 
 import ElectricPower
 import ElectricLogic
@@ -23,8 +23,8 @@ module App:
     v.override_net_name = "V+"
     gnd.override_net_name = "GND"
 
-    input = new HanElectricity_2541WV_06P_package
-    output = new HanElectricity_2541WV_06P_package
+    input = new BOOMELE_2_54_2_3P_package
+    output = new BOOMELE_2_54_2_3P_package
 
     input.1 ~ power.hv
     input.2 ~ power.hv
