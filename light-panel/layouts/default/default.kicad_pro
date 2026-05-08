@@ -304,7 +304,7 @@
       "plot": "../../build/gerber/",
       "pos_files": "../../build/",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../../../../Users/IRamp/Downloads/led_panel_v2.stl",
       "svg": "",
       "vrml": ""
     },
