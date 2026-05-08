@@ -1,0 +1,17 @@
+(fp_lib_table
+	(version 7)
+	(lib
+		(name "BOOMELE_2_54_2_3P")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../parts/BOOMELE_2_54_2_3P")
+		(options "")
+		(descr "atopile: part lib: BOOMELE_2_54_2_3P")
+	)
+	(lib
+		(name "CUI_PJ_002BH")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../parts/CUI_PJ_002BH")
+		(options "")
+		(descr "atopile: part lib: CUI_PJ_002BH")
+	)
+)
