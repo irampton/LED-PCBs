@@ -14,7 +14,7 @@ module DCDC_Buck:
     power_in = new ElectricPower
     power_out = new ElectricPower
     vout_sw = new ElectricPower
-    target_voltage = 3.3V +/- 5%
+    target_voltage = 0.9V to 12V
     fb_reference_voltage = 0.8V
     fb_r1_resistance = 120kohm +/- 1%
     power_in.lv ~ power_out.lv

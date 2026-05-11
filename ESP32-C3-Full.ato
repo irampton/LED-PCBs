@@ -9,6 +9,11 @@ import ElectricPower
 
 module ESP32_C3_Full:
     pins = new Espressif_Systems_ESP32_C3_WROOM_02_N4_package
+    signal reset
+    signal boot
+
+    reset.override_net_name = "RESET"
+    boot.override_net_name = "BOOT"
 
     # ESP32 local decoupling, USB series resistors, and boot controls
     esp32_bulk_cap = new Capacitor
@@ -41,19 +46,21 @@ module ESP32_C3_Full:
     en_pullup.resistance = 10kohm +/- 5%
     en_pullup.package = "0402"
     en_pullup.unnamed[0] ~ pins.P3V3
-    en_pullup.unnamed[1] ~ pins.EN
+    en_pullup.unnamed[1] ~ reset
     en_cap.capacitance = 1uF +/- 20%
-    en_cap.unnamed[0] ~ pins.EN
+    en_cap.unnamed[0] ~ reset
     en_cap.unnamed[1] ~ pins.GND
-    reset_button.A ~ pins.EN
+    reset ~ pins.EN
+    reset_button.A ~ reset
     reset_button.B ~ pins.GND
 
     # ESP32 bootloader button circuit
     boot_pullup.resistance = 10kohm +/- 5%
     boot_pullup.package = "0402"
     boot_pullup.unnamed[0] ~ pins.P3V3
-    boot_pullup.unnamed[1] ~ pins.IO9
-    boot_button.A ~ pins.IO9
+    boot_pullup.unnamed[1] ~ boot
+    boot ~ pins.IO9
+    boot_button.A ~ boot
     boot_button.B ~ pins.GND
 
     # Power

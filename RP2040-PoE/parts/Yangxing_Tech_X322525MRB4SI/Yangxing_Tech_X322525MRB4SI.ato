@@ -1,0 +1,23 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Yangxing_Tech_X322525MRB4SI_package:
+    """YSX321SL 25MHZ 18PF 10PPM -40~+85"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C70593", date="2026-05-11T17:06:05.666453+00:00", checksum="e832187367c8a3f3b7ab4f095facd2b981241c8d81f639023f70cf6c503d6260">
+
+    trait is_atomic_part<manufacturer="Yangxing Tech", partnumber="X322525MRB4SI", footprint="OSC-SMD_4P-L3.2-W2.5-BL_SIT8008BI.kicad_mod", symbol="X322525MRB4SI.kicad_sym", model="OSC-SMD_4P-L3.2-W2.5-CJ13-320001210A20.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C70593", manufacturer="Yangxing Tech", partno="X322525MRB4SI">
+    trait has_designator_prefix<prefix="X">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2403291504_YXC-Crystal-Oscillators-X322525MRB4SI_C70593.pdf">
+
+    # pins
+    signal GND ~ pin 4
+    GND ~ pin 2
+    signal OSC1 ~ pin 1
+    signal OSC2 ~ pin 3

@@ -1,0 +1,25 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component HANRUN_HR051067_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C93830", date="2026-05-11T16:44:39.512461+00:00", checksum="8a6e1cd44f04959b99d48831da2838f51207f19a94802f010892fa922497578d">
+
+    trait is_atomic_part<manufacturer="HANRUN", partnumber="HR051067", footprint="XFMR-SMD_HR051067.kicad_mod", symbol="HR051067.kicad_sym", model="XFMR-SMD_8P-L12.7-W11.7-H10.9-P2.5-LS15.2-BR.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C93830", manufacturer="HANRUN", partno="HR051067">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_1811031131_HANRUN-Zhongshan-HanRun-Elec-HR051067_C93830.pdf">
+
+    # pins
+    pin 1
+    pin 4
+    pin 3
+    pin 8
+    pin 6
+    pin 2
+    pin 7
+    pin 5

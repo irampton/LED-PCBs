@@ -1,0 +1,21 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UNI_ROYAL_0402WGF1242TCE_package:
+    """12.4KΩ (1242) ±1%"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C11692", date="2026-05-11T16:52:52.568547+00:00", checksum="7ee7bff7d426927d554ac7fe3cf3f38cdcd7ca4126441d5a6be86dd3d2c7d6fa">
+
+    trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="0402WGF1242TCE", footprint="R0402.kicad_mod", symbol="0402WGF1242TCE.kicad_sym", model="R0402_L1.0-W0.5-H0.4.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C11692", manufacturer="UNI-ROYAL", partno="0402WGF1242TCE">
+    trait has_designator_prefix<prefix="R">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF1242TCE_C11692.pdf">
+
+    # pins
+    pin 2
+    pin 1

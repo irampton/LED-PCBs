@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Diodes_Incorporated_SDT5H100SB_13_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C460262", date="2026-05-11T17:05:23.691774+00:00", checksum="fd4c0e93a76e5706d39762eb47b8bda47b7f6d606ce66658d7681247e5d9836a">
+
+    trait is_atomic_part<manufacturer="Diodes Incorporated", partnumber="SDT5H100SB-13", footprint="SMBF_L4.3-W3.6-LS5.3-RD.kicad_mod", symbol="SDT5H100SB-13.kicad_sym", model="1.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C460262", manufacturer="Diodes Incorporated", partno="SDT5H100SB-13">
+    trait has_designator_prefix<prefix="D">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Diodes-Incorporated-SDT5H100SB-13_C460262.pdf">
+
+    # pins
+    signal A ~ pin 2
+    signal C ~ pin 1

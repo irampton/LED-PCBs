@@ -1,4 +1,327 @@
-"""RP2040-PoE - A new atopile project"""
+#pragma experiment("FOR_LOOP")
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("TRAITS")
+
+"""RP2040 PoE-powered dev board with W5500 Ethernet."""
+
+import ElectricPower
+import SPI
+import USB2_0
+import Resistor
+import Capacitor
+
+from "../rp2040.ato" import RP2040_driver
+from "parts/Texas_Instruments_TPS23756PWP/Texas_Instruments_TPS23756PWP.ato" import Texas_Instruments_TPS23756PWP_package
+from "parts/HANRUN_HR051067/HANRUN_HR051067.ato" import HANRUN_HR051067_package
+from "parts/HANRUN_HY931147C/HANRUN_HY931147C.ato" import HANRUN_HY931147C_package
+from "parts/WIZNET_W5500/WIZNET_W5500.ato" import WIZNET_W5500_package
+from "parts/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P.ato" import Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
+from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
+from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
+from "parts/onsemi_FDD86102LZ/onsemi_FDD86102LZ.ato" import onsemi_FDD86102LZ_package
+from "parts/onsemi_BAS20LT1G/onsemi_BAS20LT1G.ato" import onsemi_BAS20LT1G_package
+from "parts/Diodes_Incorporated_SDT5H100SB_13/Diodes_Incorporated_SDT5H100SB_13.ato" import Diodes_Incorporated_SDT5H100SB_13_package
+from "parts/Yangxing_Tech_X322525MRB4SI/Yangxing_Tech_X322525MRB4SI.ato" import Yangxing_Tech_X322525MRB4SI_package
+
 
 module App:
-    pass
+    power_5v = new ElectricPower
+    power_5v.voltage = 5V +/- 10%
+    power_3v3 = new ElectricPower
+    power_3v3.voltage = 3.3V +/- 5%
+
+    magjack = new _HY931147C_Magjack
+    poe = new _TPS23756_HR051067_5V
+    ldo = new _AMS1117_3V3
+    rp2040 = new RP2040_driver
+    ethernet = new _W5500_Block
+    usb = new _USB_C_Device_Port
+
+    poe.power_5v ~ power_5v
+    power_5v ~ ldo.power_in
+    ldo.power_out ~ power_3v3
+
+    power_3v3 ~ rp2040.power_3v3
+    power_3v3 ~ ethernet.power
+    power_5v ~ usb.power_5v
+
+    poe.poe_vpos ~ magjack.poe_vpos
+    poe.poe_vneg ~ magjack.poe_vneg
+
+    ethernet.tx_p ~ magjack.phy_tx_p
+    ethernet.tx_n ~ magjack.phy_tx_n
+    ethernet.rx_p ~ magjack.phy_rx_p
+    ethernet.rx_n ~ magjack.phy_rx_n
+
+    ethernet.spi ~ rp2040.spi1
+    ethernet.cs ~ rp2040.spi1_cs
+    ethernet.rstn ~ rp2040.gpio20
+    ethernet.intn ~ rp2040.gpio21
+
+    usb.usb2 ~ rp2040.usb2
+
+    # Expose the PoE Type-2 status flag and a spare Ethernet interrupt signal.
+    signal poe_type2 ~ poe.type2_power_flag
+    signal eth_int ~ rp2040.gpio21
+
+
+module _AMS1117_3V3:
+    power_in = new ElectricPower
+    power_out = new ElectricPower
+
+    ldo = new Advanced_Monolithic_Systems_AMS1117_3_3_package
+    cin = new Capacitor
+    cout = new Capacitor
+
+    cin.capacitance = 10uF +/- 20%
+    cout.capacitance = 22uF +/- 20%
+
+    power_in.hv ~ ldo.VIN
+    power_in.lv ~ ldo.GND
+
+    power_out.hv ~ ldo.VOUT
+    power_out.lv ~ ldo.GND
+
+    cin.unnamed[0] ~ power_in.hv
+    cin.unnamed[1] ~ power_in.lv
+
+    cout.unnamed[0] ~ power_out.hv
+    cout.unnamed[1] ~ power_out.lv
+
+
+module _USB_C_Device_Port:
+    power_5v = new ElectricPower
+    usb2 = new USB2_0
+
+    usb = new Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
+    cc_resistors = new Resistor[2]
+    vbus_diode = new MDD_Microdiode_Electronics_SS14_package
+
+    for resistor in cc_resistors:
+        resistor.resistance = 5.1kohms +/- 5%
+        resistor.package = "R0402"
+
+    usb.CC1 ~> cc_resistors[0] ~> power_5v.lv
+    usb.CC2 ~> cc_resistors[1] ~> power_5v.lv
+
+    usb.DP1 ~ usb.DP2
+    usb.DN1 ~ usb.DN2
+    usb.DP1 ~ usb2.usb_if.d.p.line
+    usb.DN1 ~ usb2.usb_if.d.n.line
+
+    usb.VBUS ~ vbus_diode.A
+    vbus_diode.K ~ power_5v.hv
+
+    usb.GND ~ power_5v.lv
+    usb.EP ~ power_5v.lv
+
+
+module _HY931147C_Magjack:
+    signal phy_tx_p
+    signal phy_tx_n
+    signal phy_rx_p
+    signal phy_rx_n
+    signal poe_vpos
+    signal poe_vneg
+
+    jack = new HANRUN_HY931147C_package
+
+    # The HY931147C pinout groups the four PHY-side pins on 9-12.
+    # The spare-pair pins are used here as the integrated PoE rectified output.
+    phy_tx_p ~ jack.9
+    phy_tx_n ~ jack.10
+    phy_rx_p ~ jack.11
+    phy_rx_n ~ jack.12
+
+    poe_vpos ~ jack.4
+    poe_vpos ~ jack.5
+    poe_vneg ~ jack.7
+    poe_vneg ~ jack.8
+
+    jack.GND ~ jack.GND
+
+
+module _HR051067_Flyback:
+    signal primary_high
+    signal primary_low
+    signal secondary_high
+    signal secondary_low
+    signal aux_high
+    signal aux_low
+
+    xfmr = new HANRUN_HR051067_package
+
+    # HR051067 uses a split primary; tie both halves in series-equivalent grouping.
+    primary_high ~ xfmr.1
+    primary_high ~ xfmr.2
+    primary_low ~ xfmr.3
+    primary_low ~ xfmr.4
+
+    secondary_low ~ xfmr.5
+    secondary_high ~ xfmr.6
+
+    aux_low ~ xfmr.7
+    aux_high ~ xfmr.8
+
+
+module _TPS23756_HR051067_5V:
+    signal poe_vpos
+    signal poe_vneg
+    power_5v = new ElectricPower
+    signal type2_power_flag
+
+    pd = new Texas_Instruments_TPS23756PWP_package
+    xfmr = new _HR051067_Flyback
+
+    den_res = new Resistor
+    cls_res = new Resistor
+    input_bypass = new Capacitor
+    input_bulk = new Capacitor
+    current_sense = new Resistor
+    primary_fet = new onsemi_FDD86102LZ_package
+    vc_hold = new Capacitor
+    aux_rectifier = new onsemi_BAS20LT1G_package
+    secondary_rectifier = new Diodes_Incorporated_SDT5H100SB_13_package
+    output_caps = new Capacitor[2]
+
+    signal primary_rtn
+    signal current_sense_node
+
+    den_res.resistance = 24.9kohms +/- 1%
+    den_res.package = "R0603"
+    cls_res.resistance = 63.4ohms +/- 1%
+    cls_res.package = "R0603"
+    current_sense.resistance = 0.25ohms +/- 1%
+    current_sense.package = "R1206"
+
+    input_bypass.capacitance = 100nF +/- 20%
+    input_bulk.capacitance = 10uF +/- 20%
+    vc_hold.capacitance = 1uF +/- 20%
+    output_caps[0].capacitance = 22uF +/- 20%
+    output_caps[1].capacitance = 22uF +/- 20%
+
+    poe_vpos ~ pd.VDD
+    poe_vpos ~ pd.VDD1
+    poe_vneg ~ pd.VSS
+
+    pd.VSS ~ pd.CTL
+    pd.RTN ~ primary_rtn
+    pd.T2P ~ type2_power_flag
+
+    pd.DEN ~> den_res ~> pd.VDD
+    pd.CLS ~> cls_res ~> pd.VSS
+
+    input_bypass.unnamed[0] ~ pd.VDD
+    input_bypass.unnamed[1] ~ pd.VSS
+    input_bulk.unnamed[0] ~ pd.VDD
+    input_bulk.unnamed[1] ~ pd.VSS
+
+    pd.GATE ~ primary_fet.G
+    xfmr.primary_high ~ pd.VDD
+    xfmr.primary_low ~ primary_fet.D
+    primary_fet.S ~ current_sense_node
+    current_sense_node ~ pd.CS
+    current_sense_node ~> current_sense ~> primary_rtn
+
+    xfmr.aux_high ~ aux_rectifier.A
+    aux_rectifier.C ~ pd.VC
+    vc_hold.unnamed[0] ~ pd.VC
+    vc_hold.unnamed[1] ~ primary_rtn
+
+    xfmr.secondary_high ~ secondary_rectifier.A
+    secondary_rectifier.C ~ power_5v.hv
+    xfmr.secondary_low ~ power_5v.lv
+
+    for cap in output_caps:
+        cap.unnamed[0] ~ power_5v.hv
+        cap.unnamed[1] ~ power_5v.lv
+
+
+module _W5500_Block:
+    power = new ElectricPower
+    spi = new SPI
+    signal cs
+    signal rstn
+    signal intn
+    signal tx_p
+    signal tx_n
+    signal rx_p
+    signal rx_n
+
+    w5500 = new WIZNET_W5500_package
+    power_caps = new Capacitor[8]
+    tocap = new Capacitor
+    v12_cap = new Capacitor
+    exres = new Resistor
+    reset_pullup = new Resistor
+    pmode_pullups = new Resistor[3]
+    clock_load_caps = new Capacitor[2]
+    clock = new _W5500_25MHz_Crystal
+
+    for cap in power_caps:
+        cap.capacitance = 100nF +/- 20%
+        cap.package = "C0402"
+
+    tocap.capacitance = 2.2uF +/- 20%
+    v12_cap.capacitance = 1uF +/- 20%
+    exres.resistance = 12.4kohms +/- 1%
+    exres.package = "R0402"
+    reset_pullup.resistance = 10kohms +/- 5%
+    reset_pullup.package = "R0402"
+
+    for resistor in pmode_pullups:
+        resistor.resistance = 10kohms +/- 5%
+        resistor.package = "R0402"
+
+    for cap in clock_load_caps:
+        cap.capacitance = 18pF +/- 5%
+        cap.package = "C0402"
+
+    power.hv ~ w5500.VDD
+    power.hv ~ w5500.AVDD
+    power.lv ~ w5500.GND
+    power.lv ~ w5500.AGND
+
+    for cap in power_caps:
+        cap.unnamed[0] ~ power.hv
+        cap.unnamed[1] ~ power.lv
+
+    w5500.TOCAP ~ tocap.unnamed[0]
+    tocap.unnamed[1] ~ power.lv
+    w5500.P1V2O ~ v12_cap.unnamed[0]
+    v12_cap.unnamed[1] ~ power.lv
+    w5500.EXRES1 ~> exres ~> power.lv
+
+    w5500.PMODE0 ~> pmode_pullups[0] ~> power.hv
+    w5500.PMODE1 ~> pmode_pullups[1] ~> power.hv
+    w5500.PMODE2 ~> pmode_pullups[2] ~> power.hv
+
+    rstn ~ w5500.RSTn
+    power.hv ~> reset_pullup ~> w5500.RSTn
+    intn ~ w5500.INTn
+
+    cs ~ w5500.SCSn
+    spi.mosi.line ~ w5500.MOSI
+    spi.miso.line ~ w5500.MISO
+    spi.sclk.line ~ w5500.SCLK
+
+    tx_p ~ w5500.TXP
+    tx_n ~ w5500.TXN
+    rx_p ~ w5500.RXP
+    rx_n ~ w5500.RXN
+
+    clock.xi ~ w5500.XI_CLKIN
+    clock.xo ~ w5500.XO
+
+    clock_load_caps[0].unnamed[0] ~ w5500.XI_CLKIN
+    clock_load_caps[0].unnamed[1] ~ power.lv
+    clock_load_caps[1].unnamed[0] ~ w5500.XO
+    clock_load_caps[1].unnamed[1] ~ power.lv
+module _W5500_25MHz_Crystal:
+    signal xi
+    signal xo
+
+    xtal = new Yangxing_Tech_X322525MRB4SI_package
+
+    xi ~ xtal.OSC1
+    xo ~ xtal.OSC2

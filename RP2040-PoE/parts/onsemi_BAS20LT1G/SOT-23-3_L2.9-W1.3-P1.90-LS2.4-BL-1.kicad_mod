@@ -1,0 +1,143 @@
+(footprint "onsemi_BAS20LT1G:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BL-1"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "781dd9fb-39d6-4288-bfbc-2ea70aa9acf8")
+	(property "Reference" "REF**"
+		(at 0 -5)
+		(layer "F.SilkS")
+		(uuid "343ecf3b-ff4d-4989-a650-022d82efe994")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BL-1"
+		(at 0 5)
+		(layer "F.Fab")
+		(uuid "a2b28991-1b93-4ed5-a950-6b87b3c2297b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -1.45 1.2)
+		(end -1.42 1.2)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "c3eed3b9-a010-48fb-823e-193d382aca17")
+	)
+	(fp_circle
+		(center -0.95 1.45)
+		(end -0.85 1.45)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(locked no)
+		(uuid "1c5818be-00b9-479d-b41b-61efa0facfa4")
+	)
+	(fp_line
+		(start 1.53 0.72)
+		(end 1.53 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "645f608f-8e1e-4ccf-9a57-9524d287907c")
+	)
+	(fp_line
+		(start 1.53 -0.73)
+		(end 0.49 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "e7fe7420-49a7-426e-b0bc-efd3be5c5cf8")
+	)
+	(fp_line
+		(start -1.53 0.72)
+		(end -1.53 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "42a41951-9106-4043-a412-151586a9649d")
+	)
+	(fp_line
+		(start -1.53 -0.73)
+		(end -0.49 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "eb9de746-1d90-41da-aae9-5ef7e8d4f357")
+	)
+	(fp_line
+		(start 0.46 0.72)
+		(end -0.46 0.72)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "e29640b7-a3a9-4779-ac2c-e030e2656c73")
+	)
+	(pad "3" smd rect
+		(at 0 -1 -90)
+		(size 1.25 0.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d1749644-bae6-4185-82bd-5d17b2c51695")
+	)
+	(pad "2" smd rect
+		(at 0.95 1 -90)
+		(size 1.25 0.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e6f80953-78f1-4795-b18e-f94d1c2b1263")
+	)
+	(pad "1" smd rect
+		(at -0.95 1 -90)
+		(size 1.25 0.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "0c54ca12-ebea-4933-aa7c-490127cde5cf")
+	)
+	(model "${KIPRJMOD}/../../parts/onsemi_BAS20LT1G/SOT-23-3_L2.9-W1.3-P1.90-LS2.4.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

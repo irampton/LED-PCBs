@@ -1,0 +1,20 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component onsemi_FDD86102LZ_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C111627", date="2026-05-11T17:04:48.111987+00:00", checksum="d85851552980f162373ea3688e29c15d98e4157d42b0d9fbe786c6bf9a40f233">
+
+    trait is_atomic_part<manufacturer="onsemi", partnumber="FDD86102LZ", footprint="TO-252-3_L6.5-W5.8-P4.58-BL.kicad_mod", symbol="FDD86102LZ.kicad_sym", model="TO-252-3_L6.5-W5.8-P4.58-BL.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C111627", manufacturer="onsemi", partno="FDD86102LZ">
+    trait has_designator_prefix<prefix="Q">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_1809111615_onsemi-FDD86102LZ_C111627.pdf">
+
+    # pins
+    signal D ~ pin 2
+    signal G ~ pin 1
+    signal S ~ pin 3
