@@ -1,0 +1,4 @@
+"""RP2040-PoE - A new atopile project"""
+
+module App:
+    pass

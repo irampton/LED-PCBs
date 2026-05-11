@@ -1,0 +1,79 @@
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("TRAITS")
+
+from "parts/Diodes_Incorporated_AP63301WU_7/Diodes_Incorporated_AP63301WU_7.ato" import Diodes_Incorporated_AP63301WU_7_package
+from "parts/Murata_Electronics_BLM18PG121SN1D/Murata_Electronics_BLM18PG121SN1D.ato" import Murata_Electronics_BLM18PG121SN1D_package
+
+import ElectricPower
+import Resistor
+import Capacitor
+import Inductor
+
+
+module DCDC_Buck:
+    power_in = new ElectricPower
+    power_out = new ElectricPower
+    vout_sw = new ElectricPower
+    target_voltage = 3.3V +/- 5%
+    fb_reference_voltage = 0.8V
+    fb_r1_resistance = 120kohm +/- 1%
+    power_in.lv ~ power_out.lv
+    vout_sw.lv ~ power_out.lv
+    assert power_out.voltage within target_voltage
+
+    regulator = new Diodes_Incorporated_AP63301WU_7_package
+    inductor = new Inductor
+    cin = new Capacitor
+    cin2 = new Capacitor
+    cout1 = new Capacitor
+    cout2 = new Capacitor
+    bst_cap = new Capacitor
+    fb_r1 = new Resistor
+    fb_r2 = new Resistor
+    fb_cap = new Capacitor
+    bead = new Murata_Electronics_BLM18PG121SN1D_package
+
+    # Input side
+    cin.capacitance = 10uF +/- 20%
+    cin2.capacitance = 0.1uF +/- 20%
+    power_in.hv ~ regulator.VIN
+    power_in.hv ~ regulator.EN
+    power_in.lv ~ regulator.GND
+    cin.unnamed[0] ~ power_in.hv
+    cin.unnamed[1] ~ power_in.lv
+    cin2.unnamed[0] ~ power_in.hv
+    cin2.unnamed[1] ~ power_in.lv
+
+    # Power stage
+    bst_cap.capacitance = 100nF +/- 20%
+    bst_cap.unnamed[0] ~ regulator.BST
+    bst_cap.unnamed[1] ~ regulator.SW
+    inductor.inductance = 6.8uH +/- 20%
+    regulator.SW ~> inductor ~> vout_sw.hv
+
+    # Output side
+    cout1.capacitance = 22uF +/- 20%
+    cout2.capacitance = 22uF +/- 20%
+    cout1.unnamed[0] ~ vout_sw.hv
+    cout1.unnamed[1] ~ vout_sw.lv
+    cout2.unnamed[0] ~ vout_sw.hv
+    cout2.unnamed[1] ~ vout_sw.lv
+
+    vout_sw.hv ~ bead.A
+    bead.B ~ power_out.hv
+
+    # Feedback/control: Vout = Vfb * (1 + Rtop / Rbottom).
+    fb_cap.capacitance = 47pF +/- 5%
+    fb_r1.resistance = fb_r1_resistance * 1
+    fb_r1.package = "0603"
+    fb_r1.unnamed[0] ~ vout_sw.hv
+    fb_r1.unnamed[1] ~ regulator.FB
+    fb_r2.resistance = fb_r1_resistance * fb_reference_voltage / (target_voltage - fb_reference_voltage)
+    fb_r2.package = "0603"
+    fb_r2.unnamed[0] ~ regulator.FB
+    fb_r2.unnamed[1] ~ vout_sw.lv
+    fb_cap.unnamed[0] ~ vout_sw.hv
+    fb_cap.unnamed[1] ~ regulator.FB
+
+    # Ground
+    power_out.lv ~ regulator.GND

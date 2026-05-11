@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Murata_Electronics_BLM18PG121SN1D_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C14709", date="2026-05-04T21:10:15.869516+00:00", checksum="01b6b1f1242bb68d03c9db46eeed8d0497842cd0f77b3dc1fc6a28d668fd25c9">
+
+    trait is_atomic_part<manufacturer="Murata Electronics", partnumber="BLM18PG121SN1D", footprint="L0603.kicad_mod", symbol="BLM18PG121SN1D_C14709.kicad_sym", model="L0603_L1.6-W0.8-H0.5_BEAD.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C14709", manufacturer="Murata Electronics", partno="BLM18PG121SN1D">
+    trait has_designator_prefix<prefix="L">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Murata-Electronics-BLM18PG121SN1D_C14709.pdf">
+
+    # pins
+    signal A ~ pin 1
+    signal B ~ pin 2

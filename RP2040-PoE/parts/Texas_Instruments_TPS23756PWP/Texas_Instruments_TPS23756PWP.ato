@@ -1,0 +1,38 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Texas_Instruments_TPS23756PWP_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2863581", date="2026-05-11T16:23:10.687837+00:00", checksum="5a8617e6827bced99f531d2dcfab10fbd78720733bb41f86a9e89399dfbcab6b">
+
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS23756PWP", footprint="HTSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL-EP-1.kicad_mod", symbol="TPS23756PWP.kicad_sym", model="HTSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL-EP-1.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2863581", manufacturer="Texas Instruments", partno="TPS23756PWP">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2302220730_Texas-Instruments-TPS23756PWP_C2863581.pdf">
+
+    # pins
+    signal APD ~ pin 17
+    signal ARTN ~ pin 8
+    signal BLNK ~ pin 18
+    signal CLS ~ pin 15
+    signal COM ~ pin 4
+    signal CS ~ pin 3
+    signal CTL ~ pin 1
+    signal DEN ~ pin 13
+    signal DT ~ pin 16
+    signal FRS ~ pin 19
+    signal GAT2 ~ pin 7
+    signal GATE ~ pin 5
+    signal PAD ~ pin 21
+    signal PPD ~ pin 14
+    signal RTN ~ pin 9
+    signal T2P ~ pin 20
+    signal VB ~ pin 2
+    signal VC ~ pin 6
+    signal VDD ~ pin 12
+    signal VDD1 ~ pin 11
+    signal VSS ~ pin 10

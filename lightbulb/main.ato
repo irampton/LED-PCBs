@@ -6,8 +6,8 @@ from "parts/LZTEC_IRM_10_12/LZTEC_IRM_10_12.ato" import LZTEC_IRM_10_12_package
 from "parts/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A.ato" import Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
 from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
 from "parts/Hanbo_Electronic_MC_401L68_Z09/Hanbo_Electronic_MC_401L68_Z09.ato" import Hanbo_Electronic_MC_401L68_Z09_package
-from "dc-dc_buck.ato" import DCDC_Buck
-from "ESP32-C3-Full.ato" import ESP32_C3_Full
+from "../dc-dc_buck.ato" import DCDC_Buck
+from "../ESP32-C3-Full.ato" import ESP32_C3_Full
 from "AL8861_LED.ato" import CoolLed
 from "AL8861_LED.ato" import WarmLed
 
@@ -20,6 +20,7 @@ module App:
     power_supply = new LZTEC_IRM_10_12_package
     ac_input = new Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
     buck_3v3 = new DCDC_Buck
+    buck_3v3.target_voltage = 3.3V +/- 5%
     esp32 = new ESP32_C3_Full
 
     # USB-C connector and VBUS blocking diode

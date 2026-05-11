@@ -1,0 +1,33 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component HANRUN_HY931147C_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C91754", date="2026-05-11T16:24:29.942636+00:00", checksum="58077e6d89520d1de4465b0fc3b71d76bb2cf5d2cf74e354a8ac962e8e916e41">
+
+    trait is_atomic_part<manufacturer="HANRUN", partnumber="HY931147C", footprint="RJ45-TH_HY931147C.kicad_mod", symbol="HY931147C.kicad_sym", model="RJ45-TH_HY931147C">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C91754", manufacturer="HANRUN", partno="HY931147C">
+    trait has_designator_prefix<prefix="RJ">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2411121146_HANRUN-Zhongshan-HanRun-Elec-HY931147C_C91754.pdf">
+
+    # pins
+    pin 2
+    pin 3
+    pin 1
+    pin 6
+    pin 4
+    pin 5
+    pin 9
+    pin 10
+    pin 11
+    pin 12
+    pin 13
+    pin 14
+    pin 7
+    pin 8
+    signal GND ~ pin GND1
+    GND ~ pin GND2

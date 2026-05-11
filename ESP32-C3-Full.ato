@@ -5,10 +5,10 @@ from "parts/XUNPU_TS_1088_AR02016/XUNPU_TS_1088_AR02016.ato" import XUNPU_TS_108
 
 import Capacitor
 import Resistor
-
+import ElectricPower
 
 module ESP32_C3_Full:
-    esp32 = new Espressif_Systems_ESP32_C3_WROOM_02_N4_package
+    pins = new Espressif_Systems_ESP32_C3_WROOM_02_N4_package
 
     # ESP32 local decoupling, USB series resistors, and boot controls
     esp32_bulk_cap = new Capacitor
@@ -24,34 +24,42 @@ module ESP32_C3_Full:
     # USB full-speed data pair termination
     usb_dm_series.resistance = 22ohm +/- 5%
     usb_dm_series.package = "0402"
-    usb_dm_series.unnamed[1] ~ esp32.IO18
+    usb_dm_series.unnamed[1] ~ pins.IO18
     usb_dp_series.resistance = 22ohm +/- 5%
     usb_dp_series.package = "0402"
-    usb_dp_series.unnamed[1] ~ esp32.IO19
+    usb_dp_series.unnamed[1] ~ pins.IO19
 
     # ESP32 3.3 V bypassing
     esp32_bulk_cap.capacitance = 10uF +/- 20%
-    esp32_bulk_cap.unnamed[0] ~ esp32.P3V3
-    esp32_bulk_cap.unnamed[1] ~ esp32.GND
+    esp32_bulk_cap.unnamed[0] ~ pins.P3V3
+    esp32_bulk_cap.unnamed[1] ~ pins.GND
     esp32_bypass_cap.capacitance = 0.1uF +/- 20%
-    esp32_bypass_cap.unnamed[0] ~ esp32.P3V3
-    esp32_bypass_cap.unnamed[1] ~ esp32.GND
+    esp32_bypass_cap.unnamed[0] ~ pins.P3V3
+    esp32_bypass_cap.unnamed[1] ~ pins.GND
 
     # ESP32 enable/reset circuit
     en_pullup.resistance = 10kohm +/- 5%
     en_pullup.package = "0402"
-    en_pullup.unnamed[0] ~ esp32.P3V3
-    en_pullup.unnamed[1] ~ esp32.EN
+    en_pullup.unnamed[0] ~ pins.P3V3
+    en_pullup.unnamed[1] ~ pins.EN
     en_cap.capacitance = 1uF +/- 20%
-    en_cap.unnamed[0] ~ esp32.EN
-    en_cap.unnamed[1] ~ esp32.GND
-    reset_button.A ~ esp32.EN
-    reset_button.B ~ esp32.GND
+    en_cap.unnamed[0] ~ pins.EN
+    en_cap.unnamed[1] ~ pins.GND
+    reset_button.A ~ pins.EN
+    reset_button.B ~ pins.GND
 
     # ESP32 bootloader button circuit
     boot_pullup.resistance = 10kohm +/- 5%
     boot_pullup.package = "0402"
-    boot_pullup.unnamed[0] ~ esp32.P3V3
-    boot_pullup.unnamed[1] ~ esp32.IO9
-    boot_button.A ~ esp32.IO9
-    boot_button.B ~ esp32.GND
+    boot_pullup.unnamed[0] ~ pins.P3V3
+    boot_pullup.unnamed[1] ~ pins.IO9
+    boot_button.A ~ pins.IO9
+    boot_button.B ~ pins.GND
+
+    # Power
+    power3v3 = new ElectricPower
+    power3v3.voltage = 3.3V +/- 5%
+
+    power3v3.hv ~ pins.P3V3
+    power3v3.lv ~ pins.GND
+    pins.GND ~ pins.EP

@@ -1,0 +1,20 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component CUI_PJ_002BH_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C22359705", date="2026-05-08T15:59:44.225173+00:00", checksum="5f2ecf065a4315703b7d6876f640d410544d414ce46cd4c1dbb4644b8f6ba846">
+
+    trait is_atomic_part<manufacturer="CUI", partnumber="PJ-002BH", footprint="DC-IN-TH_PJ-002BH.kicad_mod", symbol="PJ-002BH.kicad_sym", model="DC-IN-TH_PJ-002BH.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C22359705", manufacturer="CUI", partno="PJ-002BH">
+    trait has_designator_prefix<prefix="DC">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2409302136_CUI-PJ-002BH_C22359705.pdf">
+
+    # pins
+    pin 1
+    pin 2
+    pin 3

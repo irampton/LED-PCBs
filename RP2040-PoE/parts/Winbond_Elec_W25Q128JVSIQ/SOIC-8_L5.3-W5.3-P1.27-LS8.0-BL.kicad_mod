@@ -1,0 +1,183 @@
+(footprint "Winbond_Elec_W25Q128JVSIQ:SOIC-8_L5.3-W5.3-P1.27-LS8.0-BL"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "2bef4082-93ab-415f-af33-bc8315a680c0")
+	(property "Reference" "REF**"
+		(at 0 -7.53)
+		(layer "F.SilkS")
+		(uuid "aaa3e367-b9ab-44ba-94bf-60d156b35cb0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SOIC-8_L5.3-W5.3-P1.27-LS8.0-BL"
+		(at 0 7.53)
+		(layer "F.Fab")
+		(uuid "fb9f14c5-86bb-4d45-8163-151382420530")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -1.91 1.42)
+		(end -1.76 1.42)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "3c236e68-9ce9-4e7b-9b3b-75f92982bd3d")
+	)
+	(fp_circle
+		(center -2.67 3.53)
+		(end -2.52 3.53)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "4834f247-1bb8-478b-8884-a1ef581a19c1")
+	)
+	(fp_circle
+		(center -1.91 4.35)
+		(end -1.76 4.35)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(locked no)
+		(uuid "0df66749-27a0-4d37-b234-5bce794cb3d3")
+	)
+	(fp_circle
+		(center -2.59 3.92)
+		(end -2.56 3.92)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "45c9379a-7cb7-418b-a1d2-1cfca8d17cc1")
+	)
+	(fp_line
+		(start -2.64 2.18)
+		(end -2.64 -2.18)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "878f40a4-ef65-400c-89e1-b4b4ff1c06ef")
+	)
+	(fp_line
+		(start -2.64 -2.18)
+		(end 2.64 -2.18)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "342da4ae-5a2b-4c55-b216-935a4bd4e8bf")
+	)
+	(fp_line
+		(start 2.64 -2.18)
+		(end 2.64 2.18)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "f6400be0-f42a-4a8c-a8b7-fd056fde7731")
+	)
+	(fp_line
+		(start 2.64 2.18)
+		(end -2.64 2.18)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "b214f02d-769f-4222-b417-b2135512a298")
+	)
+	(pad "1" smd oval
+		(at -1.91 3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "6e9e8436-585d-4981-97aa-32b9c6f160e3")
+	)
+	(pad "2" smd oval
+		(at -0.63 3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "9596cd35-f0d3-41c9-986a-8f224e97cc4d")
+	)
+	(pad "3" smd oval
+		(at 0.63 3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "aafbe066-7992-43f8-94c0-c97883dd2e87")
+	)
+	(pad "4" smd oval
+		(at 1.9 3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "829624a6-74b3-4d27-89b7-8846063643e3")
+	)
+	(pad "8" smd oval
+		(at -1.91 -3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e3397cf4-2857-46f5-9bcb-bcb297047696")
+	)
+	(pad "7" smd oval
+		(at -0.63 -3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "0e78e558-1b42-4728-af54-c389443f193c")
+	)
+	(pad "6" smd oval
+		(at 0.63 -3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "c0ff7087-2e32-484d-a494-b9be73b9a0fa")
+	)
+	(pad "5" smd oval
+		(at 1.9 -3.53 0)
+		(size 0.63 2.25)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "5a86a3e0-18e9-4982-b31c-44d62160076b")
+	)
+	(model "${KIPRJMOD}/../../parts/Winbond_Elec_W25Q128JVSIQ/SOIC-8_L5.3-W5.3-H1.9-LS7.9-P1.27.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)
