@@ -11,19 +11,21 @@ import Resistor
 import Capacitor
 import has_single_electric_reference
 
-from "atopile/buttons/buttons.ato" import Button
-from "atopile/buttons/buttons.ato" import VerticalButton
-from "atopile/buttons/buttons.ato" import HorizontalButton
+from "RP2040-PoE/parts/XUNPU_TS_1088_AR02016/XUNPU_TS_1088_AR02016.ato" import XUNPU_TS_1088_AR02016_package
 
-from "atopile/buttons/parts/ALPSALPINE_SKTDLDE010/ALPSALPINE_SKTDLDE010.ato" import ALPSALPINE_SKTDLDE010_package
-
-from ".ato/modules/atopile/rp2040/parts/Raspberry_Pi_RP2040/Raspberry_Pi_RP2040.ato" import Raspberry_Pi_RP2040_package
-from ".ato/modules/atopile/rp2040/parts/Winbond_Elec_W25Q128JVSIQ/Winbond_Elec_W25Q128JVSIQ.ato" import Winbond_Elec_W25Q128JVSIQ_package
-from ".ato/modules/atopile/rp2040/parts/Yangxing_Tech_X322512MSB4SI/Yangxing_Tech_X322512MSB4SI.ato" import Yangxing_Tech_X322512MSB4SI_package
+from "parts/Raspberry_Pi_RP2040/Raspberry_Pi_RP2040.ato" import Raspberry_Pi_RP2040_package
+from "parts/Winbond_Elec_W25Q128JVSIQ/Winbond_Elec_W25Q128JVSIQ.ato" import Winbond_Elec_W25Q128JVSIQ_package
+from "parts/Yangxing_Tech_X322512MSB4SI/Yangxing_Tech_X322512MSB4SI.ato" import Yangxing_Tech_X322512MSB4SI_package
 
 
 module _ButtonCarrier:
-    button = new Button
+    signal input
+    signal output
+
+    button = new XUNPU_TS_1088_AR02016_package
+
+    input ~ button.1
+    output ~ button.2
 
 module RP2040_driver:
     # External interfaces
@@ -238,9 +240,6 @@ interface QSPI:
 
 module Example:
     rp2040 = new RP2040_driver
-
-    rp2040.reset_btn.button.button -> HorizontalButton
-    rp2040.boot_btn.button.button -> VerticalButton
 
     # Power
     power_3v3 = new ElectricPower
