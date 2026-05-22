@@ -57,7 +57,7 @@ module RP2040_driver:
     reset_btn_pullup.resistance = 10kohms +/- 5%
     reset_btn_pullup.package = "R0402"
     _gnd ~ reset_btn.button.input
-    power_3v3.vcc ~> reset_btn_pullup ~> micro.RUN
+    power_3v3.hv ~> reset_btn_pullup ~> micro.RUN
     reset_btn.button.output ~ micro.RUN
 
     # Boot button (active low on QSPI_SS through series resistor)
@@ -70,7 +70,7 @@ module RP2040_driver:
     qspi_ss_pullup = new Resistor
     qspi_ss_pullup.resistance = 10kohms +/- 5%
     qspi_ss_pullup.package = "R0402"
-    power_3v3.vcc ~> qspi_ss_pullup ~> micro.QSPI_SS
+    power_3v3.hv ~> qspi_ss_pullup ~> micro.QSPI_SS
 
     usb_series_resistors = new Resistor[2]
     for resistor in usb_series_resistors:
@@ -222,7 +222,7 @@ module _W25Q128JVSIQ:
     package = new Winbond_Elec_W25Q128JVSIQ_package
 
     power = new ElectricPower
-    power.gnd ~ package.GND
+    power.lv ~ package.GND
     power.hv ~ package.VCC
 
     qspi = new QSPI

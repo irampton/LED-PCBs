@@ -51,8 +51,67 @@
           "min_clearance": 0.5
         }
       },
-      "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
+      "drc_exclusions": [
+        [
+          "annular_width|101090000|73802500|ebd1d760-00ea-473c-abd4-e54e2d49cb96|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "annular_width|40900000|33100000|96a6b072-9bb7-457a-b6dc-3dd6a0397e68|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "annular_width|40900000|44500000|534f3e37-aba5-4a6c-8887-0233a242116c|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "annular_width|95310000|73802500|18ee495b-5e0b-47f1-8af4-030f45638fca|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "padstack|101090000|73802500|ebd1d760-00ea-473c-abd4-e54e2d49cb96|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "padstack|40900000|33100000|96a6b072-9bb7-457a-b6dc-3dd6a0397e68|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "padstack|40900000|44500000|534f3e37-aba5-4a6c-8887-0233a242116c|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "padstack|95310000|73802500|18ee495b-5e0b-47f1-8af4-030f45638fca|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "silk_over_copper|44924364|30750000|60952f02-e0e3-4c8c-af66-3e33e505bb30|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "silk_over_copper|44925994|46846065|b43b6f1a-e753-45f6-aca2-db14186ae9bd|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "starved_thermal|101250000|72612500|1cb8f771-0fc1-4834-b7f3-d71ca15e2901|c8662677-1e8e-45a4-877a-fc92f69c0330|F.Cu",
+          ""
+        ],
+        [
+          "starved_thermal|101550000|72612500|1cb8f771-0fc1-4834-b7f3-d71ca15e2901|cfc36ca3-35ff-416c-b378-7b5d5db7cfed|F.Cu",
+          ""
+        ],
+        [
+          "starved_thermal|41833300|73180000|1cb8f771-0fc1-4834-b7f3-d71ca15e2901|3f3490f6-a1ea-4dff-8505-c0825e08cb53|F.Cu",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -121,7 +180,7 @@
         "min_connection": 0.0,
         "min_copper_edge_clearance": 0.5,
         "min_groove_width": 0.0,
-        "min_hole_clearance": 0.25,
+        "min_hole_clearance": 0.2,
         "min_hole_to_hole": 0.25,
         "min_microvia_diameter": 0.2,
         "min_microvia_drill": 0.1,
@@ -131,7 +190,7 @@
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
         "min_track_width": 0.0,
-        "min_via_annular_width": 0.1,
+        "min_via_annular_width": 0.05,
         "min_via_diameter": 0.5,
         "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
@@ -180,7 +239,9 @@
           "td_width_to_size_filter_ratio": 0.9
         }
       ],
-      "track_widths": [],
+      "track_widths": [
+        0.0
+      ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
           "corner_radius_percentage": 80,
@@ -207,7 +268,12 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -237,7 +303,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.1,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,

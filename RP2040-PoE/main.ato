@@ -25,10 +25,23 @@ from "parts/Yangxing_Tech_X322525MRB4SI/Yangxing_Tech_X322525MRB4SI.ato" import 
 
 
 module App:
+    signal fiveV
+    signal threeV
+    signal gnd
+
+    fiveV.override_net_name = "5V"
+    gnd.override_net_name = "GND"
+    threeV.override_net_name = "3V3"
+
     power_5v = new ElectricPower
     power_5v.voltage = 5V +/- 10%
     power_3v3 = new ElectricPower
     power_3v3.voltage = 3.3V +/- 5%
+
+    power_5v.hv ~ fiveV
+    power_3v3.hv ~ threeV
+    power_3v3.lv ~ power_5v.lv
+    power_5v.lv ~ gnd
 
     magjack = new _HY931147C_Magjack
     poe = new _TPS23756_HR051067_5V
@@ -52,17 +65,23 @@ module App:
     ethernet.tx_n ~ magjack.phy_tx_n
     ethernet.rx_p ~ magjack.phy_rx_p
     ethernet.rx_n ~ magjack.phy_rx_n
+    ethernet.link_led_anode ~ magjack.green_led_anode
+    ethernet.link_led_cathode ~ magjack.green_led_cathode
+    ethernet.activity_led_anode ~ magjack.yellow_led_anode
+    ethernet.activity_led_cathode ~ magjack.yellow_led_cathode
 
-    ethernet.spi ~ rp2040.spi1
-    ethernet.cs ~ rp2040.spi1_cs
-    ethernet.rstn ~ rp2040.gpio20
-    ethernet.intn ~ rp2040.gpio21
+    magjack.gnd ~ gnd
+
+    ethernet.spi ~ rp2040.spi
+    ethernet.cs ~ rp2040.spi_cs
+    ethernet.rstn ~ rp2040.gpio22
+    ethernet.intn ~ rp2040.gpio23
 
     usb.usb2 ~ rp2040.usb2
 
     # Expose the PoE Type-2 status flag and a spare Ethernet interrupt signal.
     signal poe_type2 ~ poe.type2_power_flag
-    signal eth_int ~ rp2040.gpio21
+    signal eth_int ~ rp2040.gpio23
 
 
 module _AMS1117_3V3:
@@ -121,24 +140,44 @@ module _HY931147C_Magjack:
     signal phy_tx_n
     signal phy_rx_p
     signal phy_rx_n
+
+    signal tx_ct
+    signal rx_ct
+
     signal poe_vpos
     signal poe_vneg
+    signal gnd
+    signal yellow_led_anode
+    signal yellow_led_cathode
+    signal green_led_anode
+    signal green_led_cathode
 
     jack = new HANRUN_HY931147C_package
 
-    # The HY931147C pinout groups the four PHY-side pins on 9-12.
-    # The spare-pair pins are used here as the integrated PoE rectified output.
-    phy_tx_p ~ jack.9
-    phy_tx_n ~ jack.10
-    phy_rx_p ~ jack.11
-    phy_rx_n ~ jack.12
+    # PHY-side magnetics pins
+    # Top transformer: pins 1,2 with center tap 3
+    phy_tx_p ~ jack.2
+    phy_tx_n ~ jack.1
+    tx_ct    ~ jack.3
 
-    poe_vpos ~ jack.4
-    poe_vpos ~ jack.5
-    poe_vneg ~ jack.7
-    poe_vneg ~ jack.8
+    # Bottom transformer: pins 5,6 with center tap 4
+    phy_rx_p ~ jack.6
+    phy_rx_n ~ jack.5
+    rx_ct    ~ jack.4
 
-    jack.GND ~ jack.GND
+    # PoE rectifier outputs from integrated diode bridge
+    poe_vpos ~ jack.9
+    poe_vneg ~ jack.10
+
+    # LEDs
+    # jack.11 / jack.12 = Yellow LED
+    # jack.13 / jack.14 = Green LED
+    yellow_led_anode ~ jack.11
+    yellow_led_cathode ~ jack.12
+    green_led_anode ~ jack.13
+    green_led_cathode ~ jack.14
+
+    jack.GND ~ gnd
 
 
 module _HR051067_Flyback:
@@ -247,6 +286,10 @@ module _W5500_Block:
     signal tx_n
     signal rx_p
     signal rx_n
+    signal link_led_anode
+    signal link_led_cathode
+    signal activity_led_anode
+    signal activity_led_cathode
 
     w5500 = new WIZNET_W5500_package
     power_caps = new Capacitor[8]
@@ -255,6 +298,7 @@ module _W5500_Block:
     exres = new Resistor
     reset_pullup = new Resistor
     pmode_pullups = new Resistor[3]
+    led_resistors = new Resistor[2]
     clock_load_caps = new Capacitor[2]
     clock = new _W5500_25MHz_Crystal
 
@@ -271,6 +315,10 @@ module _W5500_Block:
 
     for resistor in pmode_pullups:
         resistor.resistance = 10kohms +/- 5%
+        resistor.package = "R0402"
+
+    for resistor in led_resistors:
+        resistor.resistance = 270ohms +/- 5%
         resistor.package = "R0402"
 
     for cap in clock_load_caps:
@@ -310,8 +358,14 @@ module _W5500_Block:
     rx_p ~ w5500.RXP
     rx_n ~ w5500.RXN
 
+    power.hv ~> led_resistors[0] ~> link_led_anode
+    link_led_cathode ~ w5500.LINKLED
+    power.hv ~> led_resistors[1] ~> activity_led_anode
+    activity_led_cathode ~ w5500.ACTLED
+
     clock.xi ~ w5500.XI_CLKIN
     clock.xo ~ w5500.XO
+    clock.GND ~ power.lv
 
     clock_load_caps[0].unnamed[0] ~ w5500.XI_CLKIN
     clock_load_caps[0].unnamed[1] ~ power.lv
@@ -320,8 +374,10 @@ module _W5500_Block:
 module _W5500_25MHz_Crystal:
     signal xi
     signal xo
+    signal GND
 
     xtal = new Yangxing_Tech_X322525MRB4SI_package
 
     xi ~ xtal.OSC1
     xo ~ xtal.OSC2
+    GND ~ xtal.GND

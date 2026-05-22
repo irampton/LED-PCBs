@@ -217,4 +217,11 @@
 		(options "")
 		(descr "atopile: part lib: Yangxing_Tech_X322525MRB4SI")
 	)
+	(lib
+		(name "UNI_ROYAL_0402WGF2700TCE")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF2700TCE")
+		(options "")
+		(descr "atopile: part lib: UNI_ROYAL_0402WGF2700TCE")
+	)
 )

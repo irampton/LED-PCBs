@@ -4,20 +4,26 @@
 from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
 from "parts/CUI_PJ_002BH/CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
 from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
-from "parts/Hanbo_Electronic_MC_401L68_Z09/Hanbo_Electronic_MC_401L68_Z09.ato" import Hanbo_Electronic_MC_401L68_Z09_package
+from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
+from "parts/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P.ato" import Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
+
 from "../dc-dc_buck.ato" import DCDC_Buck
 from "../ESP32-C3-Full.ato" import ESP32_C3_Full
 
 import ElectricPower
+import Capacitor
+import Resistor
 
 module App:
     signal v
+    signal fiveV
     signal threeV
     signal gnd
     signal pwm_cool
     signal pwm_warm
 
     v.override_net_name = "V+"
+    fiveV.override_net_name = "5V"
     gnd.override_net_name = "GND"
     threeV.override_net_name = "3V3"
 
@@ -27,18 +33,29 @@ module App:
     v ~ power.hv
     gnd ~ power.lv
 
-    buck_3v3 = new DCDC_Buck
-    buck_3v3.target_voltage = 3.3V +/- 5%
+    power_5v = new ElectricPower
+    power_5v.voltage = 5.2V +/- 5%
+    power_3v3 = new ElectricPower
+    power_3v3.voltage = 3.3V +/- 5%
+
+    buck = new DCDC_Buck
+    buck.target_voltage = 5.2V +/- 5%
+    ldo = new _AMS1117_3V3
     esp32 = new ESP32_C3_Full
 
-    power ~ buck_3v3.power_in
-    buck_3v3.power_out ~ esp32.power3v3
-    buck_3v3.power_out.hv ~ threeV
-   
+    power ~ buck.power_in
+    buck.power_out ~ power_5v
+    power_5v ~ ldo.power_in
+    ldo.power_out ~ power_3v3
+    power_3v3 ~ esp32.power3v3
+    power_5v.hv ~ fiveV
+    power_3v3.hv ~ threeV
+
 
     # Connectors
-    usb = new Hanbo_Electronic_MC_401L68_Z09_package
+    usb = new Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
     usb_power_diode = new MDD_Microdiode_Electronics_SS14_package
+    usb_cc_resistors = new Resistor[2]
     header_1 = new BOOMELE_2_54_2_3P_package
     dc_input = new CUI_PJ_002BH_package
 
@@ -51,16 +68,24 @@ module App:
     header_1.6 ~ power.lv
     
     # USB power and full-speed USB data pair
+    for resistor in usb_cc_resistors:
+        resistor.resistance = 5.1kohms +/- 5%
+        resistor.package = "R0402"
+
     usb.VBUS ~ usb_power_diode.A
     usb_power_diode.A.override_net_name = "USB_Vin"
     usb.GND ~ power.lv
-    usb.EH ~ power.lv
+    usb.EP ~ power.lv
+    usb.CC1 ~> usb_cc_resistors[0] ~> power.lv
+    usb.CC2 ~> usb_cc_resistors[1] ~> power.lv
+    usb.DN1 ~ usb.DN2
+    usb.DP1 ~ usb.DP2
     usb.DN1 ~> esp32.usb_dm_series
     usb.DP1 ~> esp32.usb_dp_series
 
     # DC input jack
     # USB Diode allows for (very bad) source selection
-    usb_power_diode.K ~ power.hv
+    usb_power_diode.K ~ power_5v.hv
     dc_input.1 ~ power.hv
     dc_input.2 ~ power.lv
     dc_input.3 ~ power.lv
@@ -70,7 +95,30 @@ module App:
     pwm_warm ~ esp32.pins.4
 
     # TODO
-    # CC/power selection resistors
     # Add ws2812b header?
     # Fix inductor current limit
-    # Fix and lable boot and reset buttons
+    # Fix/double check boot and reset buttons
+
+
+module _AMS1117_3V3:
+    power_in = new ElectricPower
+    power_out = new ElectricPower
+
+    ldo = new Advanced_Monolithic_Systems_AMS1117_3_3_package
+    cin = new Capacitor
+    cout = new Capacitor
+
+    cin.capacitance = 10uF +/- 20%
+    cout.capacitance = 22uF +/- 20%
+
+    power_in.hv ~ ldo.VIN
+    power_in.lv ~ ldo.GND
+
+    power_out.hv ~ ldo.VOUT
+    power_out.lv ~ ldo.GND
+
+    cin.unnamed[0] ~ power_in.hv
+    cin.unnamed[1] ~ power_in.lv
+
+    cout.unnamed[0] ~ power_out.hv
+    cout.unnamed[1] ~ power_out.lv
