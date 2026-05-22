@@ -49,6 +49,8 @@ module DCDC_Buck:
     bst_cap.unnamed[0] ~ regulator.BST
     bst_cap.unnamed[1] ~ regulator.SW
     inductor.inductance = 6.8uH +/- 20%
+    inductor.max_current = 2A
+    inductor.lcsc_id = "C22463822"
     regulator.SW ~> inductor ~> vout_sw.hv
 
     # Output side

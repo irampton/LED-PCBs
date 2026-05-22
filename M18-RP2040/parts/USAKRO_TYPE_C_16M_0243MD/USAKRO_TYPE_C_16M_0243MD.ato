@@ -1,0 +1,33 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component USAKRO_TYPE_C_16M_0243MD_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2798172", date="2026-05-22T15:58:08.572243+00:00", checksum="cfb2fd1116994be8f7a4e94bd4ab0bcd793e00e758e1def6896fb3590662a8bb">
+
+    trait is_atomic_part<manufacturer="USAKRO", partnumber="TYPE-C-16M-0243MD", footprint="USB-C-SMD_TYPE-611-T3-W.kicad_mod", symbol="TYPE-C-16M-0243MD.kicad_sym", model="USB-C-SMD_TYPE-611-T3-W.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2798172", manufacturer="USAKRO", partno="TYPE-C-16M-0243MD">
+    trait has_designator_prefix<prefix="USB">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2106041634_USAKRO-TYPE-C-16M-0243MD_C2798172.pdf">
+
+    # pins
+    pin 20
+    pin 19
+    pin 18
+    pin 17
+    signal CC1 ~ pin A5
+    signal CC2 ~ pin B5
+    signal DN1 ~ pin A7
+    signal DN2 ~ pin B7
+    signal DP1 ~ pin A6
+    signal DP2 ~ pin B6
+    signal GND ~ pin A1B12
+    GND ~ pin B1A12
+    signal SBU1 ~ pin A8
+    signal SBU2 ~ pin B8
+    signal VBUS ~ pin A4B9
+    VBUS ~ pin A9B4

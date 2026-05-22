@@ -1,0 +1,136 @@
+(footprint "Diodes_Incorporated_AP63301WU_7:TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "58971c81-fa3e-41cc-a060-222d88043e07")
+	(property "Reference" "REF**"
+		(at 0 -4.95)
+		(layer "F.SilkS")
+		(uuid "666be282-64a6-4a39-a750-6526d56db977")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+		(at 0 4.95)
+		(layer "F.Fab")
+		(uuid "e55bb210-32d2-421a-8c49-e2f9f8f4175a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center 1.29 1.67)
+		(end 1.44 1.67)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(locked no)
+		(uuid "9d5cec13-2f32-4c59-a132-f127a0acfb8d")
+	)
+	(fp_circle
+		(center 1.7 0.95)
+		(end 1.8 0.95)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(locked no)
+		(uuid "6c826a76-8ced-44c9-b679-4b9a13d4a220")
+	)
+	(fp_circle
+		(center 1.4 1.45)
+		(end 1.43 1.45)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "3f99de9d-ea11-4cc0-b8db-7d11088bb952")
+	)
+	(fp_line
+		(start 0.88 -1.53)
+		(end -0.88 -1.53)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "d66eb9c7-c311-48d5-99af-5b919969e1d2")
+	)
+	(fp_line
+		(start 0.88 1.53)
+		(end -0.88 1.53)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "1fc3e6d1-c66b-4775-941a-62182b876874")
+	)
+	(pad "1" smd rect
+		(at 1.2 0.95 0)
+		(size 0.8 0.53)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "cbd20c63-36e4-44a5-8cbd-4ef755dade91")
+	)
+	(pad "2" smd rect
+		(at 1.2 0 0)
+		(size 0.8 0.53)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "46708135-5917-41ce-8ce7-b0a402f77093")
+	)
+	(pad "3" smd rect
+		(at 1.2 -0.95 0)
+		(size 0.8 0.53)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "de6c1c2b-7344-4bdb-802e-4ddc8e96819b")
+	)
+	(pad "4" smd rect
+		(at -1.2 -0.95 0)
+		(size 0.8 0.53)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "00885526-3653-49b8-9ae8-128202224000")
+	)
+	(pad "5" smd rect
+		(at -1.2 0 0)
+		(size 0.8 0.53)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "4c0da3c7-a02b-436c-a40c-203736148505")
+	)
+	(pad "6" smd rect
+		(at -1.2 0.95 0)
+		(size 0.8 0.53)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "73005ed8-a070-4059-ae55-293b4cf63760")
+	)
+	(model "${KIPRJMOD}/../../parts/Diodes_Incorporated_AP63301WU_7/TSOT-23-6_L2.9-W1.6-H1.1-LS2.8-P0.95.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+	(embedded_fonts no)
+)

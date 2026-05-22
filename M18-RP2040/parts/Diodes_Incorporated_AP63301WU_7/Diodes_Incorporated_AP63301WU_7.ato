@@ -1,0 +1,23 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Diodes_Incorporated_AP63301WU_7_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2158003", date="2026-05-22T20:05:43.273789+00:00", checksum="7921a1655f9c769270af0c0f17aec19d2534e32fe7b4d38db414544334ac3b64">
+
+    trait is_atomic_part<manufacturer="Diodes Incorporated", partnumber="AP63301WU-7", footprint="TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod", symbol="AP63301WU-7.kicad_sym", model="TSOT-23-6_L2.9-W1.6-H1.1-LS2.8-P0.95.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2158003", manufacturer="Diodes Incorporated", partno="AP63301WU-7">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2210280930_Diodes-Incorporated-AP63301WU-7_C2158003.pdf">
+
+    # pins
+    signal BST ~ pin 6
+    signal EN ~ pin 2
+    signal FB ~ pin 1
+    signal GND ~ pin 4
+    signal SW ~ pin 5
+    signal VIN ~ pin 3
