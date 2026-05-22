@@ -1,0 +1,91 @@
+#pragma experiment("FOR_LOOP")
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("TRAITS")
+
+"""Basic RP2040 Dev Board"""
+
+import ElectricPower
+import USB2_0
+import Resistor
+import Capacitor
+
+from "../rp2040.ato" import RP2040_driver
+from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
+from "parts/Hanbo_Electronic_MC_403L68_Z20/Hanbo_Electronic_MC_403L68_Z20.ato" import Hanbo_Electronic_MC_403L68_Z20_package
+from "parts/MDD_Microdiode_Electronics_SS34/MDD_Microdiode_Electronics_SS34.ato" import MDD_Microdiode_Electronics_SS34_package
+
+module App:
+    # Set up power lines
+    power_V = new ElectricPower
+    power_V.voltage = 18V +/- 0%
+    power_5v = new ElectricPower
+    power_5v.voltage = 5V +/- 10%
+    power_3v3 = new ElectricPower
+    power_3v3.voltage = 3.3V +/- 5%
+
+    # Get the power line names correct
+    signal V
+    signal fiveV
+    signal threeV
+    signal oneV
+    signal gnd
+    V.override_net_name = "V+"
+    fiveV.override_net_name = "5V"
+    threeV.override_net_name = "3V3"
+    oneV.override_net_name = "1V1"
+    gnd.override_net_name = "GND"
+
+    # Tie the grounds together and set the names
+    power_V.hv ~ V
+    power_V.lv ~ gnd
+    power_5v.hv ~ fiveV
+    power_5v.lv ~ gnd
+    power_3v3.hv ~ threeV
+    power_3v3.lv ~ gnd
+
+    # Handle the LDO (create 3V3 from ~5V)
+    ldo = new Advanced_Monolithic_Systems_AMS1117_3_3_package
+    power_5v.hv ~ ldo.VIN
+    power_3v3.hv ~ ldo.VOUT
+    gnd ~ ldo.GND
+
+    cin = new Capacitor
+    cin.capacitance = 10uF +/- 20%
+    power_5v.hv ~> cin ~> gnd
+
+    cout = new Capacitor
+    cout.capacitance = 22uF +/- 20%
+    power_3v3.hv ~> cout ~> gnd
+
+    # Hook up the RP2040
+    RP2040 = new RP2040_driver
+    RP2040.power_3v3 ~ power_3v3
+    RP2040.power_1V.hv ~ oneV
+
+    # USB Connection
+    usb_port = new Hanbo_Electronic_MC_403L68_Z20_package
+    usb_power_diode = new MDD_Microdiode_Electronics_SS34_package
+
+    # USB Power
+    usb_port.VBUS.override_net_name = "vUSB"
+    usb_port.VBUS ~ usb_power_diode.A
+    usb_power_diode.K ~ power_5v.hv
+    usb_port.GND ~ gnd
+    usb_port.EH ~ gnd
+
+    # Request power via CC resistors
+    CC1_resistor = new Resistor
+    CC1_resistor.resistance = 5.1kohms +/- 5%
+    CC1_resistor.package = "R0402"
+    usb_port.CC1 ~> CC1_resistor ~> gnd
+    usb_port.CC1.override_net_name = "CC1"
+
+    CC2_resistor = new Resistor
+    CC2_resistor.resistance = 5.1kohms +/- 5%
+    CC2_resistor.package = "R0402"
+    usb_port.CC2 ~> CC2_resistor ~> gnd
+    usb_port.CC2.override_net_name = "CC2"
+
+    # USB Data
+    usb_port.DP1 ~ RP2040.usb_p
+    usb_port.DN1 ~ RP2040.usb_n

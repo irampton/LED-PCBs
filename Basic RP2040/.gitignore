@@ -1,0 +1,17 @@
+# Build outputs
+build/
+manufacturing/
+export/
+
+# KiCad
+fp*cache
+
+# Dependencies
+.ato/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

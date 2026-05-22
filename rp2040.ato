@@ -11,12 +11,10 @@ import Resistor
 import Capacitor
 import has_single_electric_reference
 
-from "RP2040-PoE/parts/XUNPU_TS_1088_AR02016/XUNPU_TS_1088_AR02016.ato" import XUNPU_TS_1088_AR02016_package
-
 from "parts/Raspberry_Pi_RP2040/Raspberry_Pi_RP2040.ato" import Raspberry_Pi_RP2040_package
 from "parts/Winbond_Elec_W25Q128JVSIQ/Winbond_Elec_W25Q128JVSIQ.ato" import Winbond_Elec_W25Q128JVSIQ_package
 from "parts/Yangxing_Tech_X322512MSB4SI/Yangxing_Tech_X322512MSB4SI.ato" import Yangxing_Tech_X322512MSB4SI_package
-
+from "parts/XUNPU_TS_1088_AR02016/XUNPU_TS_1088_AR02016.ato" import XUNPU_TS_1088_AR02016_package
 
 module _ButtonShim:
     signal input
@@ -40,6 +38,8 @@ module RP2040_driver:
     qspi = new QSPI
     uart = new UART_Base
     usb2 = new USB2_0
+    signal usb_p
+    signal usb_n
 
     # Components
     micro = new Raspberry_Pi_RP2040_package
@@ -74,12 +74,15 @@ module RP2040_driver:
 
     usb_series_resistors = new Resistor[2]
     for resistor in usb_series_resistors:
-        resistor.resistance = 27ohms +/- 5%
-        resistor.package = "R0402"
+        # Specs call for 27 Ohm, changed to 22 for BOM costs
+        resistor.resistance = 22ohms +/- 5%
+        resistor.package = "R0603"
 
     # Connect series resistors to usb
     usb2.usb_if.d.p.line ~> usb_series_resistors[0] ~> micro.USB_DP
     usb2.usb_if.d.n.line ~> usb_series_resistors[1] ~> micro.USB_DM
+    usb_p ~ usb2.usb_if.d.p.line
+    usb_n ~ usb2.usb_if.d.n.line
 
     # Flash
     power_3v3 ~ flash.power
