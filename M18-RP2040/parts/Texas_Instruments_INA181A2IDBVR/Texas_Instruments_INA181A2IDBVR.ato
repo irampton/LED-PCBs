@@ -1,0 +1,23 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Texas_Instruments_INA181A2IDBVR_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2058784", date="2026-05-25T20:22:43.809987+00:00", checksum="db6087e8fb9e5ff718a87687edbcf8f35a66219f48bf153937e8b683ea4da45f">
+
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="INA181A2IDBVR", footprint="SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL.kicad_mod", symbol="INA181A2IDBVR.kicad_sym", model="SOT-23-6_L2.9-W1.6-H1.5-LS2.8-P0.95.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2058784", manufacturer="Texas Instruments", partno="INA181A2IDBVR">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2303012200_Texas-Instruments-INA181A2IDBVR_C2058784.pdf">
+
+    # pins
+    signal GND ~ pin 2
+    signal INneg ~ pin 4
+    signal INpos ~ pin 3
+    signal OUT ~ pin 1
+    signal REF ~ pin 5
+    signal VS ~ pin 6

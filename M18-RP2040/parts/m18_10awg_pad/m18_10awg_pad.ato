@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component m18_10awg_pad:
+    """Single through-hole solder pad for M18 10 AWG wiring."""
+
+    trait is_atomic_part<manufacturer="Custom", partnumber="m18_10awg_pad", footprint="M18_10AWG_PAD.kicad_mod", symbol="m18_10awg_pad.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="custom", supplier_partno="m18_10awg_pad", manufacturer="Custom", partno="m18_10awg_pad">
+    trait has_designator_prefix<prefix="TP">
+
+    pin 1

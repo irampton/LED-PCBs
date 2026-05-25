@@ -6,6 +6,7 @@ from "parts/CUI_PJ_002BH/CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
 from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
 from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
 from "parts/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P.ato" import Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
+from "parts\CUI_PJ_002BH\CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
 
 from "../dc-dc_buck.ato" import DCDC_Buck
 from "../ESP32-C3-Full.ato" import ESP32_C3_Full
