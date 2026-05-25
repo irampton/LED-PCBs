@@ -1,0 +1,21 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Samsung_Electro_Mechanics_CL31B475KBHNNNE_package:
+    """4.7uF (475) ±10% 50V"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C51205", date="2026-05-25T00:05:55.758407+00:00", checksum="d2bb281c5708a4ad2f88b68c334be09ef3766008e193ba44fd2aa74aedb0965c">
+
+    trait is_atomic_part<manufacturer="Samsung Electro-Mechanics", partnumber="CL31B475KBHNNNE", footprint="C1206.kicad_mod", symbol="CL31B475KBHNNNE.kicad_sym", model="C1206_L3.2-W1.6-H1.3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C51205", manufacturer="Samsung Electro-Mechanics", partno="CL31B475KBHNNNE">
+    trait has_designator_prefix<prefix="C">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL31B475KBHNNNE_C51205.pdf">
+
+    # pins
+    pin 1
+    pin 2

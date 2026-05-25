@@ -1,81 +1,125 @@
 #pragma experiment("BRIDGE_CONNECT")
 #pragma experiment("TRAITS")
 
-from "parts/Diodes_Incorporated_AP63301WU_7/Diodes_Incorporated_AP63301WU_7.ato" import Diodes_Incorporated_AP63301WU_7_package
-from "parts/Murata_Electronics_BLM18PG121SN1D/Murata_Electronics_BLM18PG121SN1D.ato" import Murata_Electronics_BLM18PG121SN1D_package
+from "parts/Texas_Instruments_TPS54331DR/Texas_Instruments_TPS54331DR.ato" import Texas_Instruments_TPS54331DR_package
 
 import ElectricPower
 import Resistor
 import Capacitor
 import Inductor
+import Diode
 
 
 module DCDC_Buck:
     power_in = new ElectricPower
     power_out = new ElectricPower
-    vout_sw = new ElectricPower
     target_voltage = 0.9V to 12V
     fb_reference_voltage = 0.8V
-    fb_r1_resistance = 120kohm +/- 1%
+    fb_r1_resistance = 10kohm +/- 1%
     power_in.lv ~ power_out.lv
-    vout_sw.lv ~ power_out.lv
     assert power_out.voltage within target_voltage
 
-    regulator = new Diodes_Incorporated_AP63301WU_7_package
+    regulator = new Texas_Instruments_TPS54331DR_package
     inductor = new Inductor
-    cin = new Capacitor
+    cin1_0 = new Capacitor
+    cin1_1 = new Capacitor
     cin2 = new Capacitor
-    cout1 = new Capacitor
-    cout2 = new Capacitor
-    bst_cap = new Capacitor
+    cout_0 = new Capacitor
+    cout_1 = new Capacitor
+    boot_cap = new Capacitor
+    ss_cap = new Capacitor
     fb_r1 = new Resistor
     fb_r2 = new Resistor
-    fb_cap = new Capacitor
-    bead = new Murata_Electronics_BLM18PG121SN1D_package
+    flyback = new Diode
+    comp_r1 = new Resistor
+    comp_c1 = new Capacitor
+    comp_c2 = new Capacitor
+    en_r1 = new Resistor
+    en_r2 = new Resistor
 
     # Input side
-    cin.capacitance = 10uF +/- 20%
-    cin2.capacitance = 0.1uF +/- 20%
+    cin1_0.capacitance = 4.7uF +/- 20%
+    assert cin1_0.max_voltage within 30V to 63V
+    cin1_0.package = "1206"
+    cin1_0.lcsc_id = "C29823"
+    cin1_1.capacitance = 4.7uF +/- 20%
+    assert cin1_1.max_voltage within 30V to 63V
+    cin1_1.package = "1206"
+    cin1_1.lcsc_id = "C29823"
+    cin2.capacitance = 10nF +/- 10%
+    assert cin2.max_voltage within 30V to 63V
+    cin2.package = "0402"
+
+    power_in.hv ~> cin1_0 ~> power_in.lv
+    power_in.hv ~> cin1_1 ~> power_in.lv
+    power_in.hv ~> cin2 ~> power_in.lv
     power_in.hv ~ regulator.VIN
-    power_in.hv ~ regulator.EN
     power_in.lv ~ regulator.GND
-    cin.unnamed[0] ~ power_in.hv
-    cin.unnamed[1] ~ power_in.lv
-    cin2.unnamed[0] ~ power_in.hv
-    cin2.unnamed[1] ~ power_in.lv
+
+    # Under-voltage EN protection
+    en_r1.resistance = 330kohm +/- 1%
+    en_r1.package = "0402"
+    en_r2.resistance = 68kohm +/- 1%
+    en_r2.package = "0402"
+
+    power_in.hv ~> en_r1 ~> regulator.EN
+    regulator.EN ~> en_r2 ~> power_in.lv
 
     # Power stage
-    bst_cap.capacitance = 100nF +/- 20%
-    bst_cap.unnamed[0] ~ regulator.BST
-    bst_cap.unnamed[1] ~ regulator.SW
     inductor.inductance = 6.8uH +/- 20%
-    inductor.max_current = 2A
-    inductor.lcsc_id = "C22463822"
-    regulator.SW ~> inductor ~> vout_sw.hv
+    inductor.max_current = 3A to 6A
+    inductor.lcsc_id = "C22463822" # 5.5A 6.8uH 65mΩ ±20% SMD,7.1x6.6mm
+    flyback.lcsc_id = "C8678" # SS34
+
+    regulator.PH ~> inductor ~> power_out.hv
+    power_out.lv ~> flyback ~> regulator.PH
+
+    # Boot
+    boot_cap.capacitance = 100nF +/- 10%
+    assert boot_cap.max_voltage within 16V to 25V
+    boot_cap.package = "0402"
+
+    regulator.BOOT ~> boot_cap ~> regulator.PH
 
     # Output side
-    cout1.capacitance = 22uF +/- 20%
-    cout2.capacitance = 22uF +/- 20%
-    cout1.unnamed[0] ~ vout_sw.hv
-    cout1.unnamed[1] ~ vout_sw.lv
-    cout2.unnamed[0] ~ vout_sw.hv
-    cout2.unnamed[1] ~ vout_sw.lv
+    #Used 10v caps for cost, change if output voltage is on the higher end
+    cout_0.capacitance = 47uF +/- 20%
+    assert cout_0.max_voltage within 10V to 50V
+    cout_0.package = "1206"
+    cout_1.capacitance = 47uF +/- 20%
+    assert cout_1.max_voltage within 10V to 50V
+    cout_1.package = "1206"
 
-    vout_sw.hv ~ bead.A
-    bead.B ~ power_out.hv
+    power_out.hv ~> cout_0 ~> power_out.lv
+    power_out.hv ~> cout_1 ~> power_out.lv
 
     # Feedback/control: Vout = Vfb * (1 + Rtop / Rbottom).
-    fb_cap.capacitance = 47pF +/- 5%
     fb_r1.resistance = fb_r1_resistance * 1
-    fb_r1.package = "0603"
-    fb_r1.unnamed[0] ~ vout_sw.hv
-    fb_r1.unnamed[1] ~ regulator.FB
+    fb_r1.package = "0402"
     fb_r2.resistance = fb_r1_resistance * fb_reference_voltage / (target_voltage - fb_reference_voltage)
     fb_r2.package = "0603"
-    fb_r2.unnamed[0] ~ regulator.FB
-    fb_r2.unnamed[1] ~ vout_sw.lv
-    fb_cap.unnamed[0] ~ vout_sw.hv
-    fb_cap.unnamed[1] ~ regulator.FB
 
-    # Ground
-    power_out.lv ~ regulator.GND
+    power_out.hv ~> fb_r1 ~> regulator.VSENSE
+    regulator.VSENSE ~> fb_r2 ~> power_out.lv
+
+    # COMP
+    comp_r1.resistance = 30kohm +/- 1%
+    comp_r1.package = "0603"
+    comp_c1.capacitance = 47pF +/- 5%
+    comp_c1.lcsc_id = "C1567"
+    assert comp_c1.max_voltage within 5V to 63V
+    comp_c1.package = "0402"
+    comp_c2.capacitance = 1nF +/- 10%
+    assert comp_c2.max_voltage within 30V to 63V
+    comp_c2.package = "0402"
+    comp_c2.lcsc_id = "C1523"
+
+    regulator.COMP ~> comp_c1 ~> power_out.lv
+    regulator.COMP ~> comp_c2 ~> comp_r1 ~> power_out.lv
+
+    # Slow Start
+    ss_cap.capacitance = 10nF +/- 10%
+    assert ss_cap.max_voltage within 30V to 63V
+    ss_cap.package = "0402"
+
+    regulator.SS ~> ss_cap ~> power_in.lv

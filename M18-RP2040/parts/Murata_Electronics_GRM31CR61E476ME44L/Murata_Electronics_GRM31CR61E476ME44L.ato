@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Murata_Electronics_GRM31CR61E476ME44L_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C403725", date="2026-05-25T00:30:45.362316+00:00", checksum="3a55ebcdd70d81e622ed42549b6069252a8a69aa84422dff9cc3ef7575818734">
+
+    trait is_atomic_part<manufacturer="Murata Electronics", partnumber="GRM31CR61E476ME44L", footprint="C1206.kicad_mod", symbol="GRM31CR61E476ME44L.kicad_sym", model="C1206_L3.2-W1.6-H1.3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C403725", manufacturer="Murata Electronics", partno="GRM31CR61E476ME44L">
+    trait has_designator_prefix<prefix="C">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_1912111437_Murata-Electronics-GRM31CR61E476ME44L_C403725.pdf">
+
+    # pins
+    pin 1
+    pin 2
