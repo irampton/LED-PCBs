@@ -196,12 +196,12 @@ module App:
     RP2040.gpio28_a2 ~> vin_sense_c1 ~> gnd
 
     # Voltage Sense
-    vin_sense_r1 = new Resistor
-    vin_sense_r1.resistance = 150kohm +/- 1%
-    vin_sense_r1.package = "0603"
-    vin_sense_r2 = new Resistor
-    vin_sense_r2.resistance = 22kohm +/- 1%
-    vin_sense_r2.package = "0603"
+    vin_vsense_r1 = new Resistor
+    vin_vsense_r1.resistance = 150kohm +/- 1%
+    vin_vsense_r1.package = "0603"
+    vin_vsense_r2 = new Resistor
+    vin_vsense_r2.resistance = 22kohm +/- 1%
+    vin_vsense_r2.package = "0603"
 
-    VIN ~> vin_sense_r1 ~> RP2040.gpio27_a1
-    P2040.gpio27_a1 ~> vin_sense_r2 ~ gnd
+    VIN ~> vin_vsense_r1 ~> RP2040.gpio27_a1
+    RP2040.gpio27_a1 ~> vin_vsense_r2 ~> gnd

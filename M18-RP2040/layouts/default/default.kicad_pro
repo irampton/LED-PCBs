@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.1
+          "min_clearance": 0.25
         }
       },
       "diff_pair_dimensions": [
@@ -60,7 +60,15 @@
       ],
       "drc_exclusions": [
         [
+          "starved_thermal|76580000|129400000|2f7bf8d6-49d2-4948-a5c0-a203ee4f7a51|79377e7d-58a4-45a9-a71b-8acd72274251|F.Cu",
+          ""
+        ],
+        [
           "starved_thermal|77360000|115310000|503955bb-8dfe-4a3e-9c3f-a0691775904a|a7281acf-1b8e-4e4f-9909-859a030d4cc8|F.Cu",
+          ""
+        ],
+        [
+          "starved_thermal|96551200|136561000|503955bb-8dfe-4a3e-9c3f-a0691775904a|8419863b-30f0-4701-8145-465781aafbee|F.Cu",
           ""
         ]
       ],
@@ -192,7 +200,13 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.1778,
+        0.254,
+        0.508,
+        1.27,
+        1.905,
+        2.54
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
