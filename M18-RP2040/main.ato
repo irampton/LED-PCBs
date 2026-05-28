@@ -160,8 +160,8 @@ module App:
     dc_pullup.resistance = 10kohm +/- 1%
     dc_pullup.package = "0603"
 
-    m18_pos.1 ~ VIN
-    m18_gnd.1 ~ gnd
+    m18_pos.contact ~ VIN
+    m18_gnd.contact ~ gnd
     m18_comm_terminal.1 ~ DP
     m18_comm_terminal.2 ~ DC
 
