@@ -111,9 +111,6 @@ module App:
     WS2812b_2.2 ~ esp32.pins.15
     WS2812b_2.3 ~ power_5v.hv
 
-    # TODO
-    # Fix/double check boot and reset buttons
-
 
 module _AMS1117_3V3:
     power_in = new ElectricPower

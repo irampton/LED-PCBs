@@ -25,24 +25,24 @@ module App:
     dc_input = new CUI_PJ_002BH_package
 
     header_1.1 ~ power.hv
-    header_1.2 ~ power.hv
+    header_1.5 ~ power.hv
     header_1.3 ~ pwm_cool
     header_1.4 ~ pwm_warm
-    header_1.5 ~ power.lv
+    header_1.2 ~ power.lv
     header_1.6 ~ power.lv
 
     header_2.1 ~ power.hv
-    header_2.2 ~ power.hv
+    header_2.5 ~ power.hv
     header_2.3 ~ pwm_cool
     header_2.4 ~ pwm_warm
-    header_2.5 ~ power.lv
+    header_2.2 ~ power.lv
     header_2.6 ~ power.lv
 
     header_3.1 ~ power.hv
-    header_3.2 ~ power.hv
+    header_3.5 ~ power.hv
     header_3.3 ~ pwm_cool
     header_3.4 ~ pwm_warm
-    header_3.5 ~ power.lv
+    header_3.2 ~ power.lv
     header_3.6 ~ power.lv
 
     dc_input.1 ~ power.hv
