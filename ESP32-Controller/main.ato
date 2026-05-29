@@ -2,11 +2,11 @@
 
 
 from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
+from "parts/BOOMELE_2_54_1_3P/BOOMELE_2_54_1_3P.ato" import BOOMELE_2_54_1_3P_package
 from "parts/CUI_PJ_002BH/CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
-from "parts/MDD_Microdiode_Electronics_SS14/MDD_Microdiode_Electronics_SS14.ato" import MDD_Microdiode_Electronics_SS14_package
 from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
-from "parts/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P/Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P.ato" import Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
-from "parts\CUI_PJ_002BH\CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
+from "parts/Hanbo_Electronic_MC_403L68_Z20/Hanbo_Electronic_MC_403L68_Z20.ato" import Hanbo_Electronic_MC_403L68_Z20_package
+from "parts/MDD_Microdiode_Electronics_SS34/MDD_Microdiode_Electronics_SS34.ato" import MDD_Microdiode_Electronics_SS34_package
 
 from "../dc-dc_buck.ato" import DCDC_Buck
 from "../ESP32-C3-Full.ato" import ESP32_C3_Full
@@ -54,39 +54,44 @@ module App:
 
 
     # Connectors
-    usb = new Shenzhen_Kinghelm_Elec_KH_TYPE_C_16P_package
-    usb_power_diode = new MDD_Microdiode_Electronics_SS14_package
-    usb_cc_resistors = new Resistor[2]
     header_1 = new BOOMELE_2_54_2_3P_package
     dc_input = new CUI_PJ_002BH_package
 
     # Stacking Header
     header_1.1 ~ power.hv
-    header_1.2 ~ power.hv
+    header_1.5 ~ power.hv
     header_1.3 ~ pwm_cool
     header_1.4 ~ pwm_warm
-    header_1.5 ~ power.lv
+    header_1.2 ~ power.lv
     header_1.6 ~ power.lv
-    
-    # USB power and full-speed USB data pair
-    for resistor in usb_cc_resistors:
-        resistor.resistance = 5.1kohms +/- 5%
-        resistor.package = "R0402"
 
-    usb.VBUS ~ usb_power_diode.A
-    usb_power_diode.A.override_net_name = "USB_Vin"
-    usb.GND ~ power.lv
-    usb.EP ~ power.lv
-    usb.CC1 ~> usb_cc_resistors[0] ~> power.lv
-    usb.CC2 ~> usb_cc_resistors[1] ~> power.lv
-    usb.DN1 ~ usb.DN2
-    usb.DP1 ~ usb.DP2
-    usb.DN1 ~> esp32.usb_dm_series
-    usb.DP1 ~> esp32.usb_dp_series
+    # USB
+    usb_port = new Hanbo_Electronic_MC_403L68_Z20_package
+    usb_power_diode = new MDD_Microdiode_Electronics_SS34_package
+
+    usb_port.VBUS.override_net_name = "vUSB"
+    usb_port.VBUS ~ usb_power_diode.A
+    usb_power_diode.K ~ power_5v.hv
+    usb_port.GND ~ gnd
+    usb_port.EH ~ gnd
+    usb_port.DN1 ~ esp32.usb_n
+    usb_port.DP1 ~ esp32.usb_p
+
+    # Request power via CC resistors
+    CC1_resistor = new Resistor
+    CC1_resistor.resistance = 5.1kohms +/- 5%
+    CC1_resistor.package = "R0402"
+    usb_port.CC1 ~> CC1_resistor ~> gnd
+    usb_port.CC1.override_net_name = "CC1"
+
+    CC2_resistor = new Resistor
+    CC2_resistor.resistance = 5.1kohms +/- 5%
+    CC2_resistor.package = "R0402"
+    usb_port.CC2 ~> CC2_resistor ~> gnd
+    usb_port.CC2.override_net_name = "CC2"
 
     # DC input jack
     # USB Diode allows for (very bad) source selection
-    usb_power_diode.K ~ power_5v.hv
     dc_input.1 ~ power.hv
     dc_input.2 ~ power.lv
     dc_input.3 ~ power.lv
@@ -95,9 +100,18 @@ module App:
     pwm_cool ~ esp32.pins.3
     pwm_warm ~ esp32.pins.4
 
+    # Optional WS2812b headers (only do <2.5A through these)
+    WS2812b_1 = new BOOMELE_2_54_1_3P_package
+    WS2812b_1.1 ~ gnd
+    WS2812b_1.2 ~ esp32.pins.17
+    WS2812b_1.3 ~ power_5v.hv
+
+    WS2812b_2 = new BOOMELE_2_54_1_3P_package
+    WS2812b_2.1 ~ gnd
+    WS2812b_2.2 ~ esp32.pins.15
+    WS2812b_2.3 ~ power_5v.hv
+
     # TODO
-    # Add ws2812b header?
-    # Fix inductor current limit
     # Fix/double check boot and reset buttons
 
 

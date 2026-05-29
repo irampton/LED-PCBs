@@ -1,0 +1,19 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component TECHFUSE_SL0630_6R8M_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C22463822", date="2026-05-29T03:07:23.362666+00:00", checksum="d6b23961795f8b472d6d080c86da24f67b0aa6d349d80f88375adadd1a7c7e9f">
+
+    trait is_atomic_part<manufacturer="TECHFUSE", partnumber="SL0630-6R8M", footprint="IND-SMD_L7.0-W6.6.kicad_mod", symbol="SL0630-6R8M.kicad_sym", model="IND-SMD_L7.0-W6.6-H3.0.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C22463822", manufacturer="TECHFUSE", partno="SL0630-6R8M">
+    trait has_designator_prefix<prefix="L">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2406141138_TECHFUSE-SL0630-6R8M_C22463822.pdf">
+
+    # pins
+    pin 2
+    pin 1

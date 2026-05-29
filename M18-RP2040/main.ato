@@ -21,6 +21,8 @@ from "parts/Texas_Instruments_INA181A2IDBVR/Texas_Instruments_INA181A2IDBVR.ato"
 from "parts/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A.ato" import Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
 from "parts/Changjiang_Electronics_Tech_2N7002/Changjiang_Electronics_Tech_2N7002.ato" import Changjiang_Electronics_Tech_2N7002_package
 from "parts/m18_10awg_pad/m18_10awg_pad.ato" import m18_10awg_pad
+from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
+from "parts/BOOMELE_2_54_1_3P/BOOMELE_2_54_1_3P.ato" import BOOMELE_2_54_1_3P_package
 
 module App:
     # Set up power lines
@@ -124,8 +126,8 @@ module App:
     v5in_sense_amp.VS ~ power_3v3.hv
     v5in_sense_amp.GND ~ gnd
     v5in_sense_amp.REF ~ gnd
-    v5in_sense_amp.OUT ~> v5in_sense_r1 ~> RP2040.gpio29_a3
-    RP2040.gpio29_a3 ~> v5in_sense_c1 ~> gnd
+    v5in_sense_amp.OUT ~> v5in_sense_r1 ~> RP2040.gpio26_a0
+    RP2040.gpio26_a0 ~> v5in_sense_c1 ~> gnd
 
     # Power In
     signal VIN
@@ -138,7 +140,7 @@ module App:
 
     dc_jack.1 ~> VIN
     dc_jack.2 ~> gnd
-    dc_jack.3 ~> dc_en_pullup ~> power_5v.hv
+    dc_jack.3 ~> dc_en_pullup ~> power_3v3.hv
     dc_jack.3 ~ RP2040.gpio25
 
     # M18
@@ -168,11 +170,12 @@ module App:
     VIN ~> dp_pullup ~> dp_nmos.D
     DP ~ dp_nmos.D
     dp_nmos.S ~ gnd
-    dp_nmos.G ~> dp_ctrl ~> RP2040.gpio24
+    dp_nmos.G ~> dp_ctrl ~> RP2040.gpio18
 
     DC ~ dc_nmos.G
     power_3v3.hv ~> dc_pullup ~> dc_nmos.D
     dc_nmos.S ~ gnd
+    dc_nmos.D ~ RP2040.gpio19
 
     # Shunt
     vin_sense_amp = new Texas_Instruments_INA181A2IDBVR_package
@@ -205,3 +208,38 @@ module App:
 
     VIN ~> vin_vsense_r1 ~> RP2040.gpio27_a1
     RP2040.gpio27_a1 ~> vin_vsense_r2 ~> gnd
+
+    # Power headers
+    header_1 = new BOOMELE_2_54_2_3P_package
+    header_1.1 ~ power.hv
+    header_1.2 ~ power.hv
+    header_1.3 ~ RP2040.gpio0
+    header_1.4 ~ RP2040.gpio1
+    header_1.5 ~ power.lv
+    header_1.6 ~ power.lv
+
+    header_2 = new BOOMELE_2_54_2_3P_package
+    header_2.1 ~ power.hv
+    header_2.2 ~ power.hv
+    header_2.3 ~ RP2040.gpio2
+    header_2.4 ~ RP2040.gpio3
+    header_2.5 ~ power.lv
+    header_2.6 ~ power.lv
+
+    header_3 = new BOOMELE_2_54_2_3P_package
+    header_3.1 ~ power.hv
+    header_3.2 ~ power.hv
+    header_3.3 ~ RP2040.gpio4
+    header_3.4 ~ RP2040.gpio5
+    header_3.5 ~ power.lv
+    header_3.6 ~ power.lv
+
+    WS2812b_1 = new BOOMELE_2_54_1_3P_package
+    WS2812b_1.1 ~ gnd
+    WS2812b_1.2 ~ RP2040.gpio6
+    WS2812b_1.3 ~ power_5v.hv
+
+    WS2812b_2 = new BOOMELE_2_54_1_3P_package
+    WS2812b_2.1 ~ gnd
+    WS2812b_2.2 ~ RP2040.gpio7
+    WS2812b_2.3 ~ power_5v.hv

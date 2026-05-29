@@ -11,6 +11,8 @@ module ESP32_C3_Full:
     pins = new Espressif_Systems_ESP32_C3_WROOM_02_N4_package
     signal reset
     signal boot
+    signal usb_n
+    signal usb_p
 
     reset.override_net_name = "RESET"
     boot.override_net_name = "BOOT"
@@ -30,9 +32,11 @@ module ESP32_C3_Full:
     usb_dm_series.resistance = 22ohm +/- 5%
     usb_dm_series.package = "0402"
     usb_dm_series.unnamed[1] ~ pins.IO18
+    usb_dm_series.unnamed[0] ~ usb_n
     usb_dp_series.resistance = 22ohm +/- 5%
     usb_dp_series.package = "0402"
     usb_dp_series.unnamed[1] ~ pins.IO19
+    usb_dp_series.unnamed[0] ~ usb_p
 
     # ESP32 3.3 V bypassing
     esp32_bulk_cap.capacitance = 10uF +/- 20%
