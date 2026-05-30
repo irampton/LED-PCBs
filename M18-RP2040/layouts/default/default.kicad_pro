@@ -301,7 +301,7 @@
       "plot": "../../export/gerber/",
       "pos_files": "../../export/",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../../../Users/IRamp/Downloads/M18-RP2040 v1.0.0.stl",
       "svg": "",
       "vrml": ""
     },
