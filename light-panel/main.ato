@@ -27,17 +27,17 @@ module App:
     output = new BOOMELE_2_54_2_3P_package
 
     input.1 ~ power.hv
-    input.2 ~ power.hv
+    input.5 ~ power.hv
     input.3 ~ pwm_cool
     input.4 ~ pwm_warm
-    input.5 ~ power.lv
+    input.2 ~ power.lv
     input.6 ~ power.lv
 
     output.1 ~ power.hv
-    output.2 ~ power.hv
+    output.5 ~ power.hv
     output.3 ~ pwm_cool
     output.4 ~ pwm_warm
-    output.5 ~ power.lv
+    output.2 ~ power.lv
     output.6 ~ power.lv
 
     cool_led = new CoolLed
