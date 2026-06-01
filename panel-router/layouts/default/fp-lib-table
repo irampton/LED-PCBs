@@ -14,4 +14,11 @@
 		(options "")
 		(descr "atopile: part lib: CUI_PJ_002BH")
 	)
+	(lib
+		(name "TestPoint_Pad_D1_0mm")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../parts/TestPoint_Pad_D1_0mm")
+		(options "")
+		(descr "atopile: part lib: TestPoint_Pad_D1_0mm")
+	)
 )

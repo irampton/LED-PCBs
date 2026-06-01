@@ -1,0 +1,24 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import has_part_removed
+import is_atomic_part
+
+component TestPoint_Pad_D1_0mm_package:
+    """
+    Generic 1.0mm SMT test pad.
+    """
+    trait is_atomic_part<manufacturer="Generic", partnumber="TP_D1_0mm", footprint="TestPoint_Pad_D1.0mm.kicad_mod", symbol="TestPoint_Pad_D1.0mm.kicad_sym">
+    trait has_part_picked<supplier_id="lcsc", supplier_partno="", manufacturer="Generic", partno="TP_D1_0mm">
+    trait has_part_removed
+    trait has_designator_prefix<prefix="TP">
+
+    pin 1
+
+module TestPoint_Pad_D1_0mm:
+    """
+    Test pad wrapper exposing a single contact tied to the 1.0mm pad package.
+    """
+    signal contact
+    package = new TestPoint_Pad_D1_0mm_package
+    contact ~ package.1

@@ -2,6 +2,7 @@
 
 from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
 from "parts/CUI_PJ_002BH/CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
+from "parts/TestPoint_Pad_D1_0mm/TestPoint_Pad_D1_0mm.ato" import TestPoint_Pad_D1_0mm
 
 import ElectricPower
 
@@ -48,3 +49,14 @@ module App:
     dc_input.1 ~ power.hv
     dc_input.2 ~ power.lv
     dc_input.3 ~ power.lv
+
+    # Test Points
+    tp_v = new TestPoint_Pad_D1_0mm
+    tp_gnd = new TestPoint_Pad_D1_0mm
+    tp_pwm_warm = new TestPoint_Pad_D1_0mm
+    tp_pwm_cool = new TestPoint_Pad_D1_0mm
+
+    tp_v.contact ~ v
+    tp_gnd.contact ~ gnd
+    tp_pwm_warm.contact ~ pwm_cool
+    tp_pwm_cool.contact ~ pwm_warm
