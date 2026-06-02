@@ -8,7 +8,7 @@ component BOOMELE_2_54_2_3P_package:
 
     # This trait marks this file as auto-generated
     # If you want to manually change it, remove the trait
-    trait is_auto_generated<system="ato_part", source="easyeda:C65114", date="2026-05-08T15:59:25.634819+00:00", checksum="7df5033f983f478472c5ed980079dd5932e58ca89e9558eeb786e6eb76e784a4">
+    trait is_auto_generated<system="ato_part", source="easyeda:C65114", date="2026-05-29T03:41:40.940344+00:00", checksum="d0132bec06d12535f46dd9920eac20ef57537eaadb6f461873608ce769482c44">
 
     trait is_atomic_part<manufacturer="BOOMELE", partnumber="2.54-2*3P针", footprint="HDR-TH_6P-P2.54-V-M-R2-C3-S2.54-1.kicad_mod", symbol="Header-Male-2.54_2x3.kicad_sym", model="HDR2.54-M-LI-2x3P.step">
     trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C65114", manufacturer="BOOMELE", partno="2.54-2*3P针">

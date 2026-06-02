@@ -134,7 +134,7 @@
 	)
 	(model "${KIPRJMOD}/../../parts/CUI_PJ_002BH/DC-IN-TH_PJ-002BH.STEP"
 		(offset
-			(xyz 3.49 -2.15 0)
+			(xyz 3.49 -2.15 6.5)
 		)
 		(scale
 			(xyz 1 1 1)
