@@ -291,7 +291,7 @@
       "plot": "../../build/gerber/",
       "pos_files": "../../build/",
       "specctra_dsn": "",
-      "step": "../../../../../Users/IRamp/Downloads/esp32_board_v1.1.0.stl",
+      "step": "../../../../../Users/IRamp/Downloads/esp32_board_v1.1.1.stl",
       "svg": "",
       "vrml": ""
     },
