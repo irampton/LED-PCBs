@@ -1,0 +1,33 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component BXCONN_UC09_0B16F00P11_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C36936538", date="2026-06-03T16:17:35.696949+00:00", checksum="4ddd2b25abc25348a2e29f44f0f398f519584e24bc05f2c2a593a1493a7e268a">
+
+    trait is_atomic_part<manufacturer="BXCONN", partnumber="UC09-0B16F00P11", footprint="USB-C_UC09-0B16F00P11.kicad_mod", symbol="UC09-0B16F00P11.kicad_sym", model="USB-C_UC09-0B16F00P11.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C36936538", manufacturer="BXCONN", partno="UC09-0B16F00P11">
+    trait has_designator_prefix<prefix="USB">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2407311111_BXCONN-UC09-0B16F00P11_C36936538.pdf">
+
+    # pins
+    signal CC1 ~ pin A5
+    signal CC2 ~ pin B5
+    signal Dn1 ~ pin A7
+    signal Dn2 ~ pin B7
+    signal Dp1 ~ pin A6
+    signal Dp2 ~ pin B6
+    signal EH ~ pin 18
+    EH ~ pin 17
+    EH ~ pin 19
+    EH ~ pin 20
+    signal GND ~ pin B1A12
+    GND ~ pin A1B12
+    signal SBU1 ~ pin A8
+    signal SBU2 ~ pin B8
+    signal VBUS ~ pin B4A9
+    VBUS ~ pin A4B9

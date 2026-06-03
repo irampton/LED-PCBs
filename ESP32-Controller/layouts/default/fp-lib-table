@@ -273,4 +273,11 @@
 		(options "")
 		(descr "atopile: part lib: BOOMELE_2_54_1_3P")
 	)
+	(lib
+		(name "BXCONN_UC09_0B16F00P11")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../parts/BXCONN_UC09_0B16F00P11")
+		(options "")
+		(descr "atopile: part lib: BXCONN_UC09_0B16F00P11")
+	)
 )

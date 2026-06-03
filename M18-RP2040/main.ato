@@ -13,7 +13,7 @@ from "../rp2040.ato" import RP2040_driver
 from "../dc-dc_buck.ato" import DCDC_Buck
 
 from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
-from "parts/Hanbo_Electronic_MC_403L68_Z20/Hanbo_Electronic_MC_403L68_Z20.ato" import Hanbo_Electronic_MC_403L68_Z20_package
+from "parts/BXCONN_UC09_0B16F00P11/BXCONN_UC09_0B16F00P11.ato" import BXCONN_UC09_0B16F00P11_package
 from "parts/MDD_Microdiode_Electronics_SS34/MDD_Microdiode_Electronics_SS34.ato" import MDD_Microdiode_Electronics_SS34_package
 from "parts/CUI_PJ_002BH/CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
 from "parts/FOJAN_FRM121WFR010TM/FOJAN_FRM121WFR010TM.ato" import FOJAN_FRM121WFR010TM_package
@@ -81,7 +81,7 @@ module App:
     RP2040.power_1V.hv ~ oneV
 
     # USB Connection
-    usb_port = new Hanbo_Electronic_MC_403L68_Z20_package
+    usb_port = new BXCONN_UC09_0B16F00P11_package
     usb_power_diode = new MDD_Microdiode_Electronics_SS34_package
 
     # USB Power
@@ -105,8 +105,10 @@ module App:
     usb_port.CC2.override_net_name = "CC2"
 
     # USB Data
-    usb_port.DP1 ~ RP2040.usb_p
-    usb_port.DN1 ~ RP2040.usb_n
+    usb_port.Dp1 ~ RP2040.usb_p
+    usb_port.Dn1 ~ RP2040.usb_n
+    usb_port.Dn1 ~ usb_port.Dn2
+    usb_port.Dp1 ~ usb_port.Dp2
 
     # 5V Shunt
     v5in_sense_amp = new Texas_Instruments_INA181A2IDBVR_package

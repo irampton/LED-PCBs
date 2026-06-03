@@ -5,7 +5,7 @@ from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_pa
 from "parts/BOOMELE_2_54_1_3P/BOOMELE_2_54_1_3P.ato" import BOOMELE_2_54_1_3P_package
 from "parts/CUI_PJ_002BH/CUI_PJ_002BH.ato" import CUI_PJ_002BH_package
 from "parts/Advanced_Monolithic_Systems_AMS1117_3_3/Advanced_Monolithic_Systems_AMS1117_3_3.ato" import Advanced_Monolithic_Systems_AMS1117_3_3_package
-from "parts/Hanbo_Electronic_MC_403L68_Z20/Hanbo_Electronic_MC_403L68_Z20.ato" import Hanbo_Electronic_MC_403L68_Z20_package
+from "parts/BXCONN_UC09_0B16F00P11/BXCONN_UC09_0B16F00P11.ato" import BXCONN_UC09_0B16F00P11_package
 from "parts/MDD_Microdiode_Electronics_SS34/MDD_Microdiode_Electronics_SS34.ato" import MDD_Microdiode_Electronics_SS34_package
 
 from "../dc-dc_buck.ato" import DCDC_Buck
@@ -66,7 +66,7 @@ module App:
     header_1.6 ~ power.lv
 
     # USB
-    usb_port = new Hanbo_Electronic_MC_403L68_Z20_package
+    usb_port = new BXCONN_UC09_0B16F00P11_package
     usb_power_diode = new MDD_Microdiode_Electronics_SS34_package
 
     usb_port.VBUS.override_net_name = "vUSB"
@@ -74,8 +74,10 @@ module App:
     usb_power_diode.K ~ power_5v.hv
     usb_port.GND ~ gnd
     usb_port.EH ~ gnd
-    usb_port.DN1 ~ esp32.usb_n
-    usb_port.DP1 ~ esp32.usb_p
+    usb_port.Dn1 ~ esp32.usb_n
+    usb_port.Dp1 ~ esp32.usb_p
+    usb_port.Dn1 ~ usb_port.Dn2
+    usb_port.Dp1 ~ usb_port.Dp2
 
     # Request power via CC resistors
     CC1_resistor = new Resistor

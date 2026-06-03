@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 2.54
+          "drill": 3.3,
+          "height": 6.0,
+          "width": 6.0
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -60,15 +60,39 @@
       ],
       "drc_exclusions": [
         [
-          "starved_thermal|76580000|129400000|2f7bf8d6-49d2-4948-a5c0-a203ee4f7a51|79377e7d-58a4-45a9-a71b-8acd72274251|F.Cu",
+          "annular_width|120731800|106512000|7cb985a5-8165-4cd7-b4d4-f6a6a4cce123|00000000-0000-0000-0000-000000000000",
           ""
         ],
         [
-          "starved_thermal|77360000|115310000|503955bb-8dfe-4a3e-9c3f-a0691775904a|a7281acf-1b8e-4e4f-9909-859a030d4cc8|F.Cu",
+          "annular_width|126511800|106512000|5631db0e-640a-4289-af94-d5ffe67731da|00000000-0000-0000-0000-000000000000",
           ""
         ],
         [
-          "starved_thermal|96551200|136561000|503955bb-8dfe-4a3e-9c3f-a0691775904a|8419863b-30f0-4701-8145-465781aafbee|F.Cu",
+          "hole_clearance|120721800|107072000|0f1af62b-e383-4511-8a21-4ca1a61e9985|7cb985a5-8165-4cd7-b4d4-f6a6a4cce123",
+          ""
+        ],
+        [
+          "hole_clearance|126521800|107072000|e373b5d7-c498-492e-8cb9-b2fdbf4a375e|5631db0e-640a-4289-af94-d5ffe67731da",
+          ""
+        ],
+        [
+          "lib_footprint_mismatch|167150000|115637300|5f70a40b-bd85-4af9-830b-4b3f4642524b|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "lib_footprint_mismatch|167150000|134472300|86f806b6-657c-4603-a8e7-8b1b4642524b|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "padstack|120731800|106512000|7cb985a5-8165-4cd7-b4d4-f6a6a4cce123|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "padstack|126511800|106512000|5631db0e-640a-4289-af94-d5ffe67731da|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "starved_thermal|138551200|128865800|503955bb-8dfe-4a3e-9c3f-a0691775904a|8419863b-30f0-4701-8145-465781aafbee|F.Cu",
           ""
         ]
       ],
@@ -301,7 +325,7 @@
       "plot": "../../export/gerber/",
       "pos_files": "../../export/",
       "specctra_dsn": "",
-      "step": "../../../../../Users/IRamp/Downloads/M18-RP2040 v1.0.0.stl",
+      "step": "../../../../../../Users/IRamp/Downloads/M18-RP2040 v1.0.1.stl",
       "svg": "",
       "vrml": ""
     },
