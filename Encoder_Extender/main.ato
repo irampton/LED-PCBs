@@ -1,14 +1,123 @@
 """Encoder_Extender - A new atopile project"""
 
+import ElectricPower
+import Resistor
+import Capacitor
+
 from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
+from "parts/BOURNS_PEC11R_4020F_S0024/BOURNS_PEC11R_4020F_S0024.ato" import BOURNS_PEC11R_4020F_S0024_package
+from "parts/Texas_Instruments_SN74HC165N/Texas_Instruments_SN74HC165N.ato" import Texas_Instruments_SN74HC165N_package
 
 module App:
-    signal power_3v3    
-    
+    power_3v3 = new ElectricPower
+    power_3v3.voltage = 3.3V +/- 5%
+
+    signal threeV
+    signal gnd
+    signal cs
+    signal tx
+    signal rx
+    signal clock
+    threeV.override_net_name = "3V3"
+    gnd.override_net_name = "GND"
+    cs.override_net_name = "CS"
+    tx.override_net_name = "TX"
+    rx.override_net_name = "RX"
+    clock.override_net_name = "CLOCK"
+
+    power_3v3.hv ~ threeV
+    power_3v3.lv ~ gnd
+
     input = new BOOMELE_2_54_2_3P_package
     input.1 ~ gnd
-    input.2 ~ RP2040.gpio9
-    input.3 ~ RP2040.gpio11
-    input.4 ~ RP2040.gpio10
-    input.5 ~ power_3v3
-    input.6 ~ RP2040.gpio8
+    input.2 ~ cs # CS
+    input.3 ~ tx # TX/MOSI
+    input.4 ~ clock # Clock
+    input.5 ~ threeV
+    input.6 ~ rx # RX/MISO
+
+    shift_register = new Texas_Instruments_SN74HC165N_package
+    shift_register.VCC ~ threeV
+    shift_register.GND ~ gnd
+    shift_register.CLK ~ clock
+    shift_register.SH_nLD ~ tx
+    shift_register.QH ~ rx
+    shift_register.CLK_INH ~ gnd
+    shift_register.SER ~ gnd
+
+    shift_register_decoupling = new Capacitor
+    shift_register_decoupling.capacitance = 100nF +/- 10%
+    shift_register_decoupling.package = "0402"
+    threeV ~> shift_register_decoupling ~> gnd
+
+    encoder_1 = new BOURNS_PEC11R_4020F_S0024_package
+    encoder_2 = new BOURNS_PEC11R_4020F_S0024_package
+    encoder_3 = new BOURNS_PEC11R_4020F_S0024_package
+
+    # Encoder common and switch common pins.
+    encoder_1.C ~ gnd
+    encoder_1.5 ~ gnd
+    encoder_1.7 ~ gnd
+    encoder_1.8 ~ gnd
+    encoder_2.C ~ gnd
+    encoder_2.5 ~ gnd
+    encoder_2.7 ~ gnd
+    encoder_2.8 ~ gnd
+    encoder_3.C ~ gnd
+    encoder_3.5 ~ gnd
+    encoder_3.7 ~ gnd
+    encoder_3.8 ~ gnd
+
+    encoder_1_cw_pullup = new Resistor
+    encoder_1_cw_pullup.resistance = 10kohm +/- 5%
+    encoder_1_cw_pullup.package = "R1206"
+    threeV ~> encoder_1_cw_pullup ~> shift_register.A
+    encoder_1.A ~ shift_register.A
+
+    encoder_1_ccw_pullup = new Resistor
+    encoder_1_ccw_pullup.resistance = 10kohm +/- 5%
+    encoder_1_ccw_pullup.package = "R1206"
+    threeV ~> encoder_1_ccw_pullup ~> shift_register.B
+    encoder_1.B ~ shift_register.B
+
+    encoder_1_btn_pullup = new Resistor
+    encoder_1_btn_pullup.resistance = 10kohm +/- 5%
+    encoder_1_btn_pullup.package = "R1206"
+    threeV ~> encoder_1_btn_pullup ~> cs
+    encoder_1.4 ~ cs
+
+    encoder_2_cw_pullup = new Resistor
+    encoder_2_cw_pullup.resistance = 10kohm +/- 5%
+    encoder_2_cw_pullup.package = "R1206"
+    threeV ~> encoder_2_cw_pullup ~> shift_register.C
+    encoder_2.A ~ shift_register.C
+
+    encoder_2_ccw_pullup = new Resistor
+    encoder_2_ccw_pullup.resistance = 10kohm +/- 5%
+    encoder_2_ccw_pullup.package = "R1206"
+    threeV ~> encoder_2_ccw_pullup ~> shift_register.D
+    encoder_2.B ~ shift_register.D
+
+    encoder_2_btn_pullup = new Resistor
+    encoder_2_btn_pullup.resistance = 10kohm +/- 5%
+    encoder_2_btn_pullup.package = "R1206"
+    threeV ~> encoder_2_btn_pullup ~> shift_register.E
+    encoder_2.4 ~ shift_register.E
+
+    encoder_3_cw_pullup = new Resistor
+    encoder_3_cw_pullup.resistance = 10kohm +/- 5%
+    encoder_3_cw_pullup.package = "R1206"
+    threeV ~> encoder_3_cw_pullup ~> shift_register.F
+    encoder_3.A ~ shift_register.F
+
+    encoder_3_ccw_pullup = new Resistor
+    encoder_3_ccw_pullup.resistance = 10kohm +/- 5%
+    encoder_3_ccw_pullup.package = "R1206"
+    threeV ~> encoder_3_ccw_pullup ~> shift_register.G
+    encoder_3.B ~ shift_register.G
+
+    encoder_3_btn_pullup = new Resistor
+    encoder_3_btn_pullup.resistance = 10kohm +/- 5%
+    encoder_3_btn_pullup.package = "R1206"
+    threeV ~> encoder_3_btn_pullup ~> shift_register.H
+    encoder_3.4 ~ shift_register.H

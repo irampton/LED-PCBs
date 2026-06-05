@@ -1,0 +1,35 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Texas_Instruments_SN74HC165N_package:
+    """74系列逻辑芯片"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2909", date="2026-06-05T01:55:44.620415+00:00", checksum="9a273f1e43b4c5553e35942ac1d19fc025dafd0134cf8d872f98bd75ac2884d4">
+
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="SN74HC165N", footprint="DIP-16_L19.8-W6.5-P2.54-LS7.6-BL.kicad_mod", symbol="SN74HC165N.kicad_sym", model="DIP-16_L20.0-W6.4-H3.5-LS7.62-P2.54.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2909", manufacturer="Texas Instruments", partno="SN74HC165N">
+    trait has_designator_prefix<prefix="U">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2411271943_Texas-Instruments-SN74HC165N_C2909.pdf">
+
+    # pins
+    signal A ~ pin 11
+    signal B ~ pin 12
+    signal C ~ pin 13
+    signal CLK ~ pin 2
+    signal CLK_INH ~ pin 15
+    signal D ~ pin 14
+    signal E ~ pin 3
+    signal F ~ pin 4
+    signal G ~ pin 5
+    signal GND ~ pin 8
+    signal H ~ pin 6
+    signal QH ~ pin 9
+    signal SER ~ pin 10
+    signal SH_nLD ~ pin 1
+    signal VCC ~ pin 16
+    signal nQH ~ pin 7

@@ -1,0 +1,24 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component BOURNS_PEC11R_4020F_S0024_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C143788", date="2026-06-05T01:46:57.698277+00:00", checksum="72de3f2a84f132fe3e89aea2fe543f6fe3d9ae8db06464a94a3f986201bba182">
+
+    trait is_atomic_part<manufacturer="BOURNS", partnumber="PEC11R-4020F-S0024", footprint="SW-TH_5P-L12.5-W13.4-P2.50-LS14.5.kicad_mod", symbol="PEC11R-4020F-S0024.kicad_sym", model="SW-TH_5P-L12.5-W13.4-P2.50-LS14.5.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C143788", manufacturer="BOURNS", partno="PEC11R-4020F-S0024">
+    trait has_designator_prefix<prefix="SW">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_BOURNS-PEC11R-4020F-S0024_C143788.pdf">
+
+    # pins
+    pin 4
+    pin 5
+    pin 7
+    pin 8
+    signal A ~ pin 1
+    signal B ~ pin 3
+    signal C ~ pin 2
