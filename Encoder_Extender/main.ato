@@ -20,9 +20,9 @@ module App:
     signal clock
     threeV.override_net_name = "3V3"
     gnd.override_net_name = "GND"
-    cs.override_net_name = "CS"
-    tx.override_net_name = "TX"
-    rx.override_net_name = "RX"
+    cs.override_net_name = "BTN1"
+    tx.override_net_name = "LATCH"
+    rx.override_net_name = "DATA"
     clock.override_net_name = "CLOCK"
 
     power_3v3.hv ~ threeV

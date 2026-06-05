@@ -138,7 +138,7 @@ module App:
     dc_jack = new CUI_PJ_002BH_package
     dc_en_pullup = new Resistor
     dc_en_pullup.resistance = 10kohm +/- 1%
-    dc_en_pullup.package = "0603"
+    dc_en_pullup.package = "0402"
 
     dc_jack.1 ~> VIN
     dc_jack.2 ~> gnd
@@ -156,13 +156,19 @@ module App:
     dc_nmos = new Changjiang_Electronics_Tech_2N7002_package
     dp_pullup = new Resistor
     dp_pullup.resistance = 10kohm +/- 1%
-    dp_pullup.package = "0603"
+    dp_pullup.package = "0402"
     dp_ctrl = new Resistor
     dp_ctrl.resistance = 330ohm +/- 1%
     dp_ctrl.package = "0402"
     dc_pullup = new Resistor
     dc_pullup.resistance = 10kohm +/- 1%
-    dc_pullup.package = "0603"
+    dc_pullup.package = "0402"
+    dc_divider_1 = new Resistor
+    dc_divider_1.resistance = 10kohm +/- 1%
+    dc_divider_1.package = "0402"
+    dc_divider_2 = new Resistor
+    dc_divider_2.resistance = 10kohm +/- 1%
+    dc_divider_2.package = "0402"
 
     m18_pos.contact ~ VIN
     m18_gnd.contact ~ gnd
@@ -174,7 +180,8 @@ module App:
     dp_nmos.S ~ gnd
     dp_nmos.G ~> dp_ctrl ~> RP2040.gpio18
 
-    DC ~ dc_nmos.G
+    DC ~> dc_divider_1 ~> dc_nmos.G
+    dc_nmos.G ~> dc_divider_2 ~> gnd
     power_3v3.hv ~> dc_pullup ~> dc_nmos.D
     dc_nmos.S ~ gnd
     dc_nmos.D ~ RP2040.gpio19
@@ -238,7 +245,7 @@ module App:
     header_3.3 ~ RP2040.gpio4
     RP2040.gpio4.override_net_name = "GPIO4"
     header_3.4 ~ RP2040.gpio5
-    RP2040.gpio5.override_net_name = "GPI54"
+    RP2040.gpio5.override_net_name = "GPIO5"
     header_3.2 ~ power.lv
     header_3.6 ~ power.lv
 
