@@ -1,0 +1,84 @@
+"""Motor-Controller - A new atopile project"""
+
+import ElectricPower
+import Resistor
+
+from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
+from "parts/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A/Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A.ato" import Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
+from "parts/STMicroelectronics_STPS10H100CT/STMicroelectronics_STPS10H100CT.ato" import STMicroelectronics_STPS10H100CT_package
+from "parts/VBsemi_Elec_RFP30N06LE_VB/VBsemi_Elec_RFP30N06LE_VB.ato" import VBsemi_Elec_RFP30N06LE_VB_package
+from "parts/m18_10awg_pad/m18_10awg_pad.ato" import m18_10awg_pad
+
+module App:
+    power = new ElectricPower
+    power.voltage = 18V +/- 20%
+
+    signal pwm1
+    signal pwm2
+    signal gate1
+    signal gate2
+    signal motor1
+    signal motor2
+
+    pwm1.override_net_name = "PWM1"
+    pwm2.override_net_name = "PWM2"
+    gate1.override_net_name = "GATE1"
+    gate2.override_net_name = "GATE2"
+    motor1.override_net_name = "MOTOR1"
+    motor2.override_net_name = "MOTOR2"
+
+    header_1 = new BOOMELE_2_54_2_3P_package
+    header_1.1 ~ power.hv
+    header_1.5 ~ power.hv
+    header_1.3 ~ pwm1
+    header_1.4 ~ pwm2
+    header_1.2 ~ power.lv
+    header_1.6 ~ power.lv
+
+    motor_1_header = new Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
+    motor_1_header.1 ~ power.hv
+    motor_1_header.2 ~ motor1
+
+    motor_2_header = new Ningbo_Kangnex_Elec_WJ127_5_0_02P_14_00A_package
+    motor_2_header.1 ~ power.hv
+    motor_2_header.2 ~ motor2
+
+    motor_1_fet = new VBsemi_Elec_RFP30N06LE_VB_package
+    motor_1_flyback = new STMicroelectronics_STPS10H100CT_package
+    motor_1_gate_resistor = new Resistor
+    motor_1_gate_resistor.resistance = 330ohm +/- 5%
+    motor_1_gate_resistor.package = "R1206"
+    motor_1_gate_pulldown = new Resistor
+    motor_1_gate_pulldown.resistance = 10kohm +/- 5%
+    motor_1_gate_pulldown.package = "R1206"
+    pwm1 ~> motor_1_gate_resistor ~> gate1
+    gate1 ~> motor_1_gate_pulldown ~> power.lv
+    motor_1_fet.G ~ gate1
+    motor_1_fet.S ~ power.lv
+    motor_1_fet.D ~ motor1
+    motor_1_flyback.K ~ power.hv
+    motor_1_flyback.A1 ~ motor1
+    motor_1_flyback.A2 ~ motor1
+
+    motor_2_fet = new VBsemi_Elec_RFP30N06LE_VB_package
+    motor_2_flyback = new STMicroelectronics_STPS10H100CT_package
+    motor_2_gate_resistor = new Resistor
+    motor_2_gate_resistor.resistance = 330ohm +/- 5%
+    motor_2_gate_resistor.package = "R1206"
+    motor_2_gate_pulldown = new Resistor
+    motor_2_gate_pulldown.resistance = 10kohm +/- 5%
+    motor_2_gate_pulldown.package = "R1206"
+    pwm2 ~> motor_2_gate_resistor ~> gate2
+    gate2 ~> motor_2_gate_pulldown ~> power.lv
+    motor_2_fet.G ~ gate2
+    motor_2_fet.S ~ power.lv
+    motor_2_fet.D ~ motor2
+    motor_2_flyback.K ~ power.hv
+    motor_2_flyback.A1 ~ motor2
+    motor_2_flyback.A2 ~ motor2
+
+    # M18 connection
+    m18_pos = new m18_10awg_pad
+    m18_gnd = new m18_10awg_pad
+    m18_pos.contact ~ power.hv
+    m18_gnd.contact ~ power.lv

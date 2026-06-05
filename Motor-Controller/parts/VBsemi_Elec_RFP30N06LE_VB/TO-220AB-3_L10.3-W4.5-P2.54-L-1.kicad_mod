@@ -1,0 +1,146 @@
+(footprint "VBsemi_Elec_RFP30N06LE_VB:TO-220AB-3_L10.3-W4.5-P2.54-L-1"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "5304590d-510f-4b08-9d48-dfc8c15c42c8")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "2b4c2295-175a-4895-81dc-d81ed594e6cd")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "TO-220AB-3_L10.3-W4.5-P2.54-L-1"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "a57a63e9-fa03-4b1a-8acb-4d318e274e7b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -5.15 1.59)
+		(end -5.12 1.59)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "d6b180de-4742-4a43-96cb-501db5d6a30f")
+	)
+	(fp_circle
+		(center -3.74 1.73)
+		(end -3.44 1.73)
+		(stroke
+			(width 0.6)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(locked no)
+		(uuid "a0e46833-a4c3-4358-95ee-1bd447133f16")
+	)
+	(fp_line
+		(start 5.08 -1.8)
+		(end -5.09 -1.8)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "8af71c79-e794-4e08-80e4-aaaaac38880d")
+	)
+	(fp_line
+		(start 5.08 -3)
+		(end 5.08 1.5)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "5cf3561c-c7bb-4353-95e4-a7af4036b45f")
+	)
+	(fp_line
+		(start 5.08 1.5)
+		(end -5.09 1.5)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "a789b857-6cb4-4b9d-b106-d64324588de9")
+	)
+	(fp_line
+		(start -5.09 1.5)
+		(end -5.09 -3)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "d6d5551c-c290-4ccb-8bde-63e32d7440fd")
+	)
+	(fp_line
+		(start -5.09 -3)
+		(end 5.08 -3)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "29135ef0-74d3-422a-986a-0c41dcaa7608")
+	)
+	(pad "2" thru_hole oval
+		(at 0 0 0)
+		(size 2 1.3)
+		(drill oval 1.2999974 0.7500112)
+		(layers "*.Cu" "*.Mask")
+		(uuid "4f68d485-1100-4292-a023-5c3ae59e1231")
+	)
+	(pad "3" thru_hole oval
+		(at 2.54 0 0)
+		(size 2 1.3)
+		(drill oval 1.2999974 0.7500112)
+		(layers "*.Cu" "*.Mask")
+		(uuid "b54810bc-e984-41ba-b5e1-38c4bf610e9d")
+	)
+	(pad "1" thru_hole rect
+		(at -2.54 0 0)
+		(size 2 1.3)
+		(drill oval 1.2999974 0.7500112)
+		(layers "*.Cu" "*.Mask")
+		(uuid "fd7f2e9b-a0bc-4dcf-9eed-a284a1843cfc")
+	)
+	(model "${KIPRJMOD}/../../parts/VBsemi_Elec_RFP30N06LE_VB/TO-220AB-3_L10.3-W4.5-P2.54-L-1.STEP"
+		(offset
+			(xyz 0 0 5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

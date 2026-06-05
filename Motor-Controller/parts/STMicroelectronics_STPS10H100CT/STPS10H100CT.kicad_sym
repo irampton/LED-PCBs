@@ -1,0 +1,200 @@
+(kicad_symbol_lib
+	(version 20241229)
+	(generator "faebryk_convert")
+	(symbol "STPS10H100CT"
+		(property "Reference" "D"
+			(id 0)
+			(at 0 7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "STPS10H100CT"
+			(id 1)
+			(at 0 -7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "C161632:TO-220AB-3_L10.4-W4.6-P2.54-T"
+			(id 2)
+			(at 0 -10.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/_STMicroelectronics_STPS10H100CT_STPS10H100CT_C161632.html"
+			(id 3)
+			(at 0 -12.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C161632"
+			(id 5)
+			(at 0 -15.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(in_bom yes)
+		(on_board yes)
+		(symbol "STPS10H100CT_0_1"
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type background)
+				)
+				(pts
+					(xy -1.27 1.02) (xy 1.27 2.54) (xy -1.27 4.06) (xy -1.27 1.02)
+				)
+			)
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type background)
+				)
+				(pts
+					(xy -1.27 -4.06) (xy 1.27 -2.54) (xy -1.27 -1.02) (xy -1.27 -4.06)
+				)
+			)
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type none)
+				)
+				(pts
+					(xy 1.27 4.06) (xy 1.27 1.02)
+				)
+			)
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type none)
+				)
+				(pts
+					(xy 1.27 -1.02) (xy 1.27 -4.06)
+				)
+			)
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type none)
+				)
+				(pts
+					(xy 1.27 2.54) (xy 2.54 2.54) (xy 2.54 -2.54) (xy 1.27 -2.54)
+				)
+			)
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type none)
+				)
+				(pts
+					(xy -1.27 2.54) (xy -2.54 2.54)
+				)
+			)
+			(polyline
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type none)
+				)
+				(pts
+					(xy -1.27 -2.54) (xy -2.54 -2.54)
+				)
+			)
+			(pin unspecified line
+				(at -7.62 2.54 0)
+				(length 5.08)
+				(name "A1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 7.62 -0 180)
+				(length 5.08)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at -7.62 -2.54 0)
+				(length 5.08)
+				(name "A2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+)

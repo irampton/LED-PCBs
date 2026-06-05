@@ -1,0 +1,20 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component VBsemi_Elec_RFP30N06LE_VB_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C878812", date="2026-06-05T06:17:25.458251+00:00", checksum="2e4ff544f5077aa4812ca2d60239da8a7b307b6572af94cc3f8660f7cc727d56">
+
+    trait is_atomic_part<manufacturer="VBsemi Elec", partnumber="RFP30N06LE-VB", footprint="TO-220AB-3_L10.3-W4.5-P2.54-L-1.kicad_mod", symbol="RFP30N06LE.kicad_sym", model="TO-220AB-3_L10.3-W4.5-P2.54-L-1.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C878812", manufacturer="VBsemi Elec", partno="RFP30N06LE-VB">
+    trait has_designator_prefix<prefix="Q">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_2408211451_VBsemi-Elec-RFP30N06LE-VB_C878812.pdf">
+
+    # pins
+    signal D ~ pin 2
+    signal G ~ pin 1
+    signal S ~ pin 3

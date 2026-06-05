@@ -1,0 +1,67 @@
+(kicad_symbol_lib
+	(version 20241229)
+	(generator "codex")
+	(symbol "m18_10awg_pad"
+		(property "Reference" "TP"
+			(id 0)
+			(at 0 2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "m18_10awg_pad"
+			(id 1)
+			(at 0 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "m18_10awg_pad:M18_10AWG_PAD"
+			(id 2)
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(in_bom no)
+		(on_board yes)
+		(symbol "m18_10awg_pad_0_1"
+			(circle
+				(center 0 0)
+				(radius 1.27)
+				(stroke
+					(width 0)
+					(type default)
+					(color 0 0 0 0)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+)

@@ -1,0 +1,20 @@
+import has_datasheet
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component STMicroelectronics_STPS10H100CT_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C161632", date="2026-06-05T06:21:28.059499+00:00", checksum="fd581fd2b2d4bdb2530e38934cf1a72b1acd63822c50bdb71a6dd2c01e88021c">
+
+    trait is_atomic_part<manufacturer="STMicroelectronics", partnumber="STPS10H100CT", footprint="TO-220AB-3_L10.4-W4.6-P2.54-T.kicad_mod", symbol="STPS10H100CT.kicad_sym", model="TO-220AB-3_L10.4-W4.6-H9.2-P2.54.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C161632", manufacturer="STMicroelectronics", partno="STPS10H100CT">
+    trait has_designator_prefix<prefix="D">
+    trait has_datasheet<datasheet="https://www.lcsc.com/datasheet/lcsc_datasheet_1806021546_STMicroelectronics-STPS10H100CT_C161632.pdf">
+
+    # pins
+    signal A1 ~ pin 1
+    signal A2 ~ pin 3
+    signal K ~ pin 2
