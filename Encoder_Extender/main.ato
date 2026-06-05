@@ -1,0 +1,14 @@
+"""Encoder_Extender - A new atopile project"""
+
+from "parts/BOOMELE_2_54_2_3P/BOOMELE_2_54_2_3P.ato" import BOOMELE_2_54_2_3P_package
+
+module App:
+    signal power_3v3    
+    
+    input = new BOOMELE_2_54_2_3P_package
+    input.1 ~ gnd
+    input.2 ~ RP2040.gpio9
+    input.3 ~ RP2040.gpio11
+    input.4 ~ RP2040.gpio10
+    input.5 ~ power_3v3
+    input.6 ~ RP2040.gpio8
